@@ -56,6 +56,7 @@ class CreateCrud extends Command
 
             $testPath = base_path("tests/{$crudPath}");
             $this->makeDirectory($testPath);
+            $this->makeDirectory(base_path('app/Http/Requests/'.$crudName));
 
             $this->copyStub('controller', $crudName.'Controller', base_path('app/Http/Controllers/'));
             $this->copyStub('store.request', 'StoreRequest', base_path('app/Http/Requests/'.$crudName));
@@ -90,6 +91,9 @@ class CreateCrud extends Command
 
             // code...
         } catch (\Throwable $th) {
+            throw $th;
+
+            return 1;
             // dd($th->getTrace(), $th->getMessage());
         }
     }
@@ -120,10 +124,10 @@ class CreateCrud extends Command
 
         // Check if the user has published the stubs
         $publishedStub = resource_path("stubs/vendor/api-crud-generator/{$stubName}.stub");
-        $vendordStub = base_path("/vendor/noamanahmed/api-crud-generator/src/stubs/{$stubName}.stub");
+        $vendorStub = __DIR__."/../stubs/{$stubName}.stub";
 
         // If the published stub exists, use it; otherwise, fall back to the default stub path in your package
-        $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendordStub;
+        $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendorStub;
 
         $destinationFilePath = "{$destinationFolder}/{$stubCrudName}.php";
 
