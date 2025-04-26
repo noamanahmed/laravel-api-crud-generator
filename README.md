@@ -25,7 +25,6 @@ composer require noamanahmed/laravel-api-crud-generator
 You can publish the config and provider file with this command:
 
 ```bash
-php artisan vendor:publish --tag="api-crud-generator-provider"
 php artisan vendor:publish --tag="api-crud-generator-stubs"
 ```
 
