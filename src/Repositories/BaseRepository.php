@@ -11,20 +11,35 @@ use Spatie\QueryBuilder\QueryBuilder;
 class BaseRepository implements BaseRepositoryContract
 {
     protected Model $model;
+
     protected string $primaryKey = 'id';
+
     protected string $paginator = 'simple';
+
     protected int $perPage = 20;
+
     protected array $with = [];
+
     protected array $withCount = [];
+
     protected array $scopes = [];
+
     protected array $queryFilters = [];
+
     protected array $filters = [];
+
     protected array $searchableFilters = [];
+
     protected array $sorters = [];
+
     protected string $defaultSorter = 'id';
+
     protected string $defaultSorterDirection = 'asc';
+
     protected ?string $searchQuery = null;
+
     protected bool $supportsFullTextSearch = false;
+
     protected array $defaultDropdownFields = ['id'];
 
     public function __construct()
@@ -52,31 +67,31 @@ class BaseRepository implements BaseRepositoryContract
 
         $options = request()->get('options') ?? [];
 
-        if (!empty($options['page'])) {
+        if (! empty($options['page'])) {
             request()->merge(['page' => $options['page']]);
         }
 
-        if (!empty($options['itemsPerPage']) && (int)$options['itemsPerPage'] >= 0 && (int)$options['itemsPerPage'] <= 100) {
-            $this->perPage = (int)$options['itemsPerPage'];
+        if (! empty($options['itemsPerPage']) && (int) $options['itemsPerPage'] >= 0 && (int) $options['itemsPerPage'] <= 100) {
+            $this->perPage = (int) $options['itemsPerPage'];
         }
 
-        if (!empty(request()->get('q'))) {
+        if (! empty(request()->get('q'))) {
             $this->searchQuery = request()->get('q');
         }
 
-        if (!empty($options['sortBy'])) {
+        if (! empty($options['sortBy'])) {
             $sortByOptions = $options['sortBy'];
             $sortString = '';
 
             foreach ($sortByOptions as $sortOptions) {
-                if (!isset($sortOptions['key'], $sortOptions['order'])) {
+                if (! isset($sortOptions['key'], $sortOptions['order'])) {
                     continue;
                 }
 
-                $sortString .= strtolower($sortOptions['order']) === 'desc' ? '-' . $sortOptions['key'] : $sortOptions['key'];
+                $sortString .= strtolower($sortOptions['order']) === 'desc' ? '-'.$sortOptions['key'] : $sortOptions['key'];
             }
 
-            if (!empty($sortString)) {
+            if (! empty($sortString)) {
                 request()->merge(['sort' => $sortString]);
             }
         }
@@ -86,51 +101,51 @@ class BaseRepository implements BaseRepositoryContract
     {
         $queryBuilder = QueryBuilder::for($this->model);
 
-        if (!empty($this->filters)) {
+        if (! empty($this->filters)) {
             $queryBuilder->allowedFilters($this->filters);
         }
 
-        if (!empty($this->sorters)) {
+        if (! empty($this->sorters)) {
             $queryBuilder->allowedSorts($this->sorters);
         }
 
-        if (!empty($this->defaultSorter) && !empty($this->defaultSorterDirection)) {
+        if (! empty($this->defaultSorter) && ! empty($this->defaultSorterDirection)) {
             $direction = strtolower($this->defaultSorterDirection);
 
-            if (!in_array($direction, ['asc', 'desc'])) {
-                throw new RuntimeException("The sort direction must be either ASC or DESC.");
+            if (! in_array($direction, ['asc', 'desc'])) {
+                throw new RuntimeException('The sort direction must be either ASC or DESC.');
             }
 
-            $queryBuilder->defaultSort($direction === 'desc' ? '-' . $this->defaultSorter : $this->defaultSorter);
+            $queryBuilder->defaultSort($direction === 'desc' ? '-'.$this->defaultSorter : $this->defaultSorter);
         }
 
-        if (!empty($this->searchQuery)) {
+        if (! empty($this->searchQuery)) {
             if ($this->supportsFullTextSearch) {
-                $queryBuilder->whereFullText($this->searchableFilters, $this->searchQuery . '*', [
+                $queryBuilder->whereFullText($this->searchableFilters, $this->searchQuery.'*', [
                     'mode' => 'boolean',
                 ]);
             } else {
                 $queryBuilder->where(function ($query) {
                     foreach ($this->searchableFilters as $i => $filter) {
                         if ($i === 0) {
-                            $query->where($filter, 'LIKE', '%' . $this->searchQuery . '%');
+                            $query->where($filter, 'LIKE', '%'.$this->searchQuery.'%');
                         } else {
-                            $query->orWhere($filter, 'LIKE', '%' . $this->searchQuery . '%');
+                            $query->orWhere($filter, 'LIKE', '%'.$this->searchQuery.'%');
                         }
                     }
                 });
             }
         }
 
-        if (!empty($this->with)) {
+        if (! empty($this->with)) {
             $queryBuilder->with($this->with);
         }
 
-        if (!empty($this->withCount)) {
+        if (! empty($this->withCount)) {
             $queryBuilder->withCount($this->withCount);
         }
 
-        if (!empty($this->scopes)) {
+        if (! empty($this->scopes)) {
             $queryBuilder->scopes($this->scopes);
         }
 
@@ -194,12 +209,12 @@ class BaseRepository implements BaseRepositoryContract
 
     public function destroy(int $id): bool
     {
-        return (bool)$this->model->where($this->primaryKey, $id)->delete();
+        return (bool) $this->model->where($this->primaryKey, $id)->delete();
     }
 
     public function destroyMulti(array $ids): bool
     {
-        return (bool)$this->model->whereIn($this->primaryKey, $ids)->delete();
+        return (bool) $this->model->whereIn($this->primaryKey, $ids)->delete();
     }
 
     protected function getWith(): array
@@ -231,6 +246,7 @@ class BaseRepository implements BaseRepositoryContract
     {
         return $this->searchableFilters;
     }
+
     public function addQueryFilter(callable $callback): static
     {
         $this->queryFilters[] = $callback;
