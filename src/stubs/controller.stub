@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Controllers;
 
 use App\Http\Requests\{{ modelName }}\StoreRequest;
 use App\Http\Requests\{{ modelName }}\UpdateRequest;
@@ -10,8 +10,9 @@ use App\Http\Requests\{{ modelName }}\AnalyticsRequest;
 
 use App\Models\{{ modelName }};
 use App\Services\{{ modelName }}Service;
+use NoamanAhmed\Controllers\BaseController;
 
-class {{ class }} extends BaseController
+class {{ modelName }}Controller extends BaseController
 {
     public function __construct(
         private {{ modelName }}Service ${{ model }}Service

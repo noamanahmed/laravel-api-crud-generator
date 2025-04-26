@@ -86,6 +86,7 @@ class CreateCrud extends Command
             $this->replaceStubVariables(base_path("tests/Factories/{$crudName}Factory.php"));
             $this->replaceStubVariables(base_path("database/seeders/{$crudName}Seeder.php"));
             $this->replaceStubVariables(base_path("resources/lang/en/{$snakedCrudName}.php"));
+            $this->replaceStubVariables(base_path('app/Http/Controllers/'.$crudName.'Controller.php'));
 
             $this->info('CRUD files generated successfully.');
 
@@ -96,26 +97,6 @@ class CreateCrud extends Command
         }
     }
 
-    protected function createFormRequests($crudName)
-    {
-
-        $requestNames = [
-            'Store',
-            'Update',
-            'Delete',
-            'Import',
-            'Export',
-            'Analytics',
-        ];
-
-        $crudNameFolderName = str($crudName)->ucfirst()->toString();
-        foreach ($requestNames as $name) {
-
-            Artisan::call('make:request', [
-                'name' => $crudNameFolderName.'/'.$name.'Request',
-            ]);
-        }
-    }
 
     protected function copyStub($stubName, $stubCrudName, $destinationFolder)
     {
