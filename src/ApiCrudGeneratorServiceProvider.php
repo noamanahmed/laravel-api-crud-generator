@@ -28,10 +28,11 @@ class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
             ->hasCommand(CreateCrud::class)
             ->hasCommand(DeleteCrud::class);
     }
+
     public function bootingPackage()
     {
         $this->publishes([
-            __DIR__ . '/../../stubs' => resource_path('stubs/vendor/laravel-api-crud-generator'),
+            __DIR__.'/../../stubs' => resource_path('stubs/vendor/laravel-api-crud-generator'),
         ], 'laravel-api-crud-generator-stubs');
     }
 }
