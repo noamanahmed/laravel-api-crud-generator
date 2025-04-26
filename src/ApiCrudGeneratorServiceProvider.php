@@ -4,6 +4,7 @@ namespace NoamanAhmed\ApiCrudGenerator;
 
 use NoamanAhmed\ApiCrudGenerator\Commands\CreateCrud;
 use NoamanAhmed\ApiCrudGenerator\Commands\DeleteCrud;
+use NoamanAhmed\ApiCrudGenerator\Commands\Init;
 use NoamanAhmed\ApiCrudGenerator\Providers\CrudServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -23,7 +24,14 @@ class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
             ->publishesServiceProvider(CrudServiceProvider::class)
 
             // ->hasViews()
+            ->hasCommand(Init::class)
             ->hasCommand(CreateCrud::class)
             ->hasCommand(DeleteCrud::class);
+    }
+    public function bootingPackage()
+    {
+        $this->publishes([
+            __DIR__ . '/../../stubs' => resource_path('stubs/vendor/laravel-api-crud-generator'),
+        ], 'laravel-api-crud-generator-stubs');
     }
 }

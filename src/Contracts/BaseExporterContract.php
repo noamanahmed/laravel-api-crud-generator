@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exporters;
+namespace NoamanAhmed\Exporters;
 
 use App\Enums\ExporterEnum;
 

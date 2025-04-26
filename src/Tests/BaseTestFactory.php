@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Factories;
+namespace NoamanAhmed\Transformers\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 

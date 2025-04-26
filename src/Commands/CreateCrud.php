@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class CreateCrud extends Command
 {
-    public $signature = 'api-crud-generator:create';
+    public $signature = 'api-crud-generator:create {name}';
 
     /**
      * The console command description.
@@ -28,7 +28,7 @@ class CreateCrud extends Command
             $snakedCrudName = Str::snake($crudName);
             $crudPath = "Feature/Modules/{$crudName}";
 
-            $this->createFormRequests($crudName);
+            // $this->createFormRequests($crudName);
 
             // Generate Controller
             Artisan::call('make:controller', [
@@ -41,7 +41,7 @@ class CreateCrud extends Command
             ]);
 
             Artisan::call('make:migration', [
-                'name' => 'create'.str($crudName)->plural().'_table',
+                'name' => 'create' . str($crudName)->plural() . '_table',
                 '-n' => true,
             ]);
 
@@ -57,15 +57,21 @@ class CreateCrud extends Command
             $testPath = base_path("tests/{$crudPath}");
             $this->makeDirectory($testPath);
 
-            $this->copyStub('test.pest', $crudName.'CrudTest', base_path("tests/Feature/Modules/{$crudName}"));
-            $this->copyStub('test.factory.pest', $crudName.'Factory', base_path('tests/Factories'));
-            $this->copyStub('repository', $crudName.'Repository', base_path('app/Repositories'));
-            $this->copyStub('service', $crudName.'Service', base_path('app/Services'));
-            $this->copyStub('transformer', $crudName.'Transformer', base_path('app/Transformers'));
-            $this->copyStub('exporter', $crudName.'Exporter', base_path('app/Exporters'));
-            $this->copyStub('importer', $crudName.'Importer', base_path('app/Importers'));
-            $this->copyStub('collectiontransformer', $crudName.'CollectionTransformer', base_path('app/Transformers'));
-            $this->copyStub('enum', $crudName.'StatusEnum', base_path('app/Enums'));
+            $this->copyStub('store.request', 'StoreRequest', base_path('app/Http/Requests/' . $crudName));
+            $this->copyStub('update.request', 'UpdateRequest', base_path('app/Http/Requests/' . $crudName));
+            $this->copyStub('import.request', 'ImportRequest', base_path('app/Http/Requests/' . $crudName));
+            $this->copyStub('export.request', 'ExportRequest', base_path('app/Http/Requests/' . $crudName));
+            $this->copyStub('analytics.request', 'AnalyticsRequest', base_path('app/Http/Requests/' . $crudName));
+
+            $this->copyStub('test.pest', $crudName . 'CrudTest', base_path("tests/Feature/Modules/{$crudName}"));
+            $this->copyStub('test.factory', $crudName . 'Factory', base_path('tests/Factories'));
+            $this->copyStub('repository', $crudName . 'Repository', base_path('app/Repositories'));
+            $this->copyStub('service', $crudName . 'Service', base_path('app/Services'));
+            $this->copyStub('transformer', $crudName . 'Transformer', base_path('app/Transformers'));
+            $this->copyStub('exporter', $crudName . 'Exporter', base_path('app/Exporters'));
+            $this->copyStub('importer', $crudName . 'Importer', base_path('app/Importers'));
+            $this->copyStub('collectiontransformer', $crudName . 'CollectionTransformer', base_path('app/Transformers'));
+            $this->copyStub('enum', $crudName . 'StatusEnum', base_path('app/Enums'));
             $this->copyStub('language', $snakedCrudName, base_path('resources/lang/en'));
             $this->replaceStubVariables(app_path("Http/Controllers/Api/V1/{$crudName}Controller.php"));
             $this->replaceStubVariables(app_path("Services/{$crudName}Service.php"));
@@ -97,22 +103,29 @@ class CreateCrud extends Command
             'Delete',
             'Import',
             'Export',
+            'Analytics',
         ];
 
         $crudNameFolderName = str($crudName)->ucfirst()->toString();
         foreach ($requestNames as $name) {
 
             Artisan::call('make:request', [
-                'name' => $crudNameFolderName.'/'.$name.'Request',
+                'name' => $crudNameFolderName . '/' . $name . 'Request',
             ]);
         }
     }
 
     protected function copyStub($stubName, $stubCrudName, $destinationFolder)
     {
-        $stubsFolder = $this->stubsPath(); // Replace with the actual path to your stubs folder
+        // Get the path to the stubs folder
+        $stubsFolder = $this->stubsPath(); // This could be your base method for stubs path
 
-        $sourceFilePath = "{$stubsFolder}/{$stubName}.stub";
+        // Check if the user has published the stubs
+        $publishedStub = resource_path("stubs/vendor/laravel-api-crud-generator/{$stubName}.stub");
+
+        // If the published stub exists, use it; otherwise, fall back to the default stub path in your package
+        $sourceFilePath = file_exists($publishedStub) ? $publishedStub : "{$stubsFolder}/{$stubName}.stub";
+
         $destinationFilePath = "{$destinationFolder}/{$stubCrudName}.php";
 
         if (! File::exists($destinationFilePath)) {
@@ -131,7 +144,7 @@ class CreateCrud extends Command
             'model' => strtolower($this->argument('name')),
         ];
         foreach ($replaceVariablesArray as $key => $value) {
-            $fileContent = str_replace('{{ '.$key.' }}', $value, $fileContent);
+            $fileContent = str_replace('{{ ' . $key . ' }}', $value, $fileContent);
         }
         // Write the modified content back to the file
         File::put($filePath, $fileContent);

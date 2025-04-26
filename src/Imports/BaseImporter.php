@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Importers;
+namespace NoamanAhmed\Importers;
 
 use App\Enums\ImporterEnum;
 use App\Translation;

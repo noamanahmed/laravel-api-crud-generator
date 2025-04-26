@@ -1,0 +1,14 @@
+<?php
+
+namespace Tests\Factories;
+
+use App\Models\{{ modelName }};
+use NoamanAhmed\Transformers\Tests\BaseFactory
+
+class {{ modelName }}Factory extends BaseFactory {
+
+    public function getModelClassName() : string
+    {
+        return {{ modelName }}::class;
+    }
+}

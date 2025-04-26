@@ -1,0 +1,114 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Http\Requests\{{ modelName }}\StoreRequest;
+use App\Http\Requests\{{ modelName }}\UpdateRequest;
+use App\Http\Requests\{{ modelName }}\ImportRequest;
+use App\Http\Requests\{{ modelName }}\ExportRequest;
+use App\Http\Requests\{{ modelName }}\AnalyticsRequest;
+
+use App\Models\{{ modelName }};
+use App\Services\{{ modelName }}Service;
+
+class {{ class }} extends BaseController
+{
+    public function __construct(
+        private {{ modelName }}Service ${{ model }}Service
+    ){}
+
+
+    /**
+     * List {{ modelName }} paginated.
+    */
+    public function index()
+    {
+        return $this->{{ model }}Service->index();
+    }
+
+
+    /**
+     * Get {{ modelName }}.
+     */
+    public function dropdown()
+    {
+        return $this->{{ model }}Service->dropdown();
+    }
+
+
+    /**
+     * Get {{ modelName }} available statuses.
+     */
+    public function dropdownForStatus()
+    {
+        return $this->{{ model }}Service->dropdownForStatus();
+    }
+
+    /**
+     * Create {{ modelName }}.
+     */
+    public function store(StoreRequest $request)
+    {
+        return $this->{{ model }}Service->store($request->validated());
+    }
+
+    /**
+     * Get {{ modelName }}
+     */
+    public function show({{ modelName }} ${{ model }})
+    {
+        return $this->{{ model }}Service->get(${{ model }}->id);
+    }
+
+
+    /**
+     * Update {{ modelName }}
+     */
+    public function update(UpdateRequest $request, {{ modelName }} ${{ model }})
+    {
+        return $this->{{ model }}Service->update(${{ model }}->id,$request->validated());
+    }
+
+    /**
+     * Delete {{ modelName }}
+     */
+    public function destroy({{ modelName }} ${{ model }})
+    {
+        return $this->{{ model }}Service->delete(${{ model }}->id);
+    }
+
+    /**
+     * Multi delete {{ modelName }}
+     */
+    public function multiDestroy({{ modelName }} ${{ model }})
+    {
+        return $this->{{ model }}Service->multiDelete(${{ model }}->id);
+    }
+
+
+    /**
+     * Export {{ modelName }} to CSV,XLSX,PDF.
+     */
+    public function export(ExportRequest $request)
+    {
+        return $this->{{ model }}Service->export($request->validated());
+    }
+
+    /**
+     * Import {{ modelName }} from CSV,XLX.
+    */
+    public function import(ImportRequest $request)
+    {
+        return $this->{{ model }}Service->import($request->validated());
+    }
+
+    /**
+     * Analytics {{ modelName }}
+     */
+    public function analytics(AnalyticsRequest $request)
+    {
+        return $this->{{ model }}Service->analytics($request->validated());
+
+    }
+
+}

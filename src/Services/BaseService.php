@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace NoamanAhmed\Services;
 
 use App\Repositories\BaseRepositoryContract;
 use App\Transformers\BaseCollectionTransformerContract;
