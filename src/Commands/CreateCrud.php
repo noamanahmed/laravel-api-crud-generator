@@ -93,10 +93,7 @@ class CreateCrud extends Command
             // code...
         } catch (\Throwable $th) {
             throw $th;
-            // dd($th->getTrace(), $th->getMessage());
         }
-
-        return 1;
     }
 
     protected function createFormRequests($crudName)
