@@ -8,23 +8,18 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Interface BaseRepositoryContract
- *
- * @package App\Repositories
  */
 interface BaseRepositoryContract
 {
     /**
      * Set the model instance.
      *
-     * @param Model|Authenticatable $model
      * @return $this
      */
     public function setModel(Model|Authenticatable $model);
 
     /**
      * Get the model instance.
-     *
-     * @return Model|Authenticatable
      */
     public function getModel(): Model|Authenticatable;
 
@@ -37,8 +32,6 @@ interface BaseRepositoryContract
 
     /**
      * Get the QueryBuilder instance.
-     *
-     * @return QueryBuilder
      */
     public function getQueryBuilder(): QueryBuilder;
 
@@ -59,7 +52,6 @@ interface BaseRepositoryContract
     /**
      * Find a record by ID.
      *
-     * @param int $id
      * @return mixed
      */
     public function find(int $id);
@@ -67,7 +59,6 @@ interface BaseRepositoryContract
     /**
      * Get a record by ID.
      *
-     * @param int $id
      * @return mixed
      */
     public function get(int $id);
@@ -82,7 +73,6 @@ interface BaseRepositoryContract
     /**
      * Store a new record.
      *
-     * @param array $data
      * @return mixed
      */
     public function store(array $data);
@@ -90,8 +80,6 @@ interface BaseRepositoryContract
     /**
      * Update a record by ID.
      *
-     * @param int $id
-     * @param array $data
      * @return mixed
      */
     public function update(int $id, array $data);
@@ -99,7 +87,6 @@ interface BaseRepositoryContract
     /**
      * Delete a record by ID.
      *
-     * @param int $id
      * @return mixed
      */
     public function destroy(int $id);
@@ -107,7 +94,6 @@ interface BaseRepositoryContract
     /**
      * Delete multiple records by IDs.
      *
-     * @param array $ids
      * @return mixed
      */
     public function destroyMulti(array $ids);

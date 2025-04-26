@@ -2,11 +2,11 @@
 
 namespace NoamanAhmed\ApiCrudGenerator;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use NoamanAhmed\ApiCrudGenerator\Commands\CreateCrud;
 use NoamanAhmed\ApiCrudGenerator\Commands\DeleteCrud;
 use NoamanAhmed\ApiCrudGenerator\Providers\CrudServiceProvider;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
 {

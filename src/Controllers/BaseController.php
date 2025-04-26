@@ -2,18 +2,17 @@
 
 namespace NoamanAhmed\ApiCrudGenerator\Controllers;
 
-use Illuminate\Routing\Controller as Controller;
-
+use Illuminate\Routing\Controller;
 
 class BaseController extends Controller
 {
     public function __construct(
         private WorkflowService $workflowService
-    ){}
+    ) {}
 
     /**
      * Create Workflow.
-    */
+     */
     public function index()
     {
         return $this->workflowService->index();
@@ -26,7 +25,6 @@ class BaseController extends Controller
     {
         return $this->workflowService->dropdown();
     }
-
 
     /**
      * Workflow constants.
@@ -52,13 +50,12 @@ class BaseController extends Controller
         return $this->workflowService->get($workflow->id);
     }
 
-
     /**
      * Update Workflow
      */
     public function update(UpdateRequest $request, Workflow $workflow)
     {
-        return $this->workflowService->update($workflow->id,$request->validated());
+        return $this->workflowService->update($workflow->id, $request->validated());
     }
 
     /**
@@ -77,7 +74,6 @@ class BaseController extends Controller
         return $this->workflowService->multiDelete($workflow->id);
     }
 
-
     /**
      * Exports Workflow.
      */
@@ -88,7 +84,7 @@ class BaseController extends Controller
 
     /**
      * Import Workflow.
-    */
+     */
     public function import(ExportRequest $request)
     {
         return $this->workflowService->import($request->validated());
@@ -96,10 +92,9 @@ class BaseController extends Controller
 
     /**
      * Workflow Analytics.
-    */
+     */
     public function analytics(Request $request)
     {
         return $this->workflowService->analytics($request);
     }
-
 }

@@ -2,9 +2,9 @@
 
 namespace NoamanAhmed\ApiCrudGenerator\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\ResourceRegistrar as BaseResourceRegistrar;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class CrudServiceProvider extends ServiceProvider
 {
@@ -22,10 +22,11 @@ class CrudServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        Route::macro('apiCrudResource', function ($name, $controller ,$options = []) {
+        Route::macro('apiCrudResource', function ($name, $controller, $options = []) {
             $routes = app(BaseResourceRegistrar::class)->getResourceDefaults();
             $permission = $options['permission'] ?? $name;
             $routeName = $options['name'] ?? $name;
+
             return Route::resource($name, $controller, array_merge([
                 'only' => $routes,
             ], $options))->names($routeName)->middleware('authorize.api:'.$permission);

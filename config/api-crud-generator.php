@@ -2,5 +2,5 @@
 
 return [
 
-    'stubs_path' => 'stubs/'
+    'stubs_path' => 'stubs/',
 ];

@@ -6,36 +6,28 @@ use App\Repositories\BaseRepositoryContract;
 use App\Transformers\BaseCollectionTransformerContract;
 use App\Transformers\BaseTransformerContract;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 /**
  * Class BaseService
- *
- * @package App\Services
  */
 class BaseService implements BaseServiceContract
 {
     /**
      * The Repository to interact with.
-     *
-     * @var BaseRepositoryContract
      */
     protected BaseRepositoryContract $repository;
 
     /**
      * The transformer to transform API responses for a single entity.
-     *
-     * @var BaseTransformerContract
      */
     protected BaseTransformerContract $transformer;
 
     /**
      * The transformer to transform API responses for collections of a single entity.
-     *
-     * @var BaseCollectionTransformerContract
      */
     protected BaseCollectionTransformerContract $collectionTransformer;
 
@@ -48,8 +40,6 @@ class BaseService implements BaseServiceContract
 
     /**
      * Create a new BaseService instance.
-     *
-     * @param Request $request
      */
     public function __construct(
         protected Request $request
@@ -68,31 +58,28 @@ class BaseService implements BaseServiceContract
     /**
      * Set the repository instance.
      *
-     * @param BaseRepositoryContract $repository
      * @return $this
      */
     public function setRepository(BaseRepositoryContract $repository)
     {
         $this->repository = $repository;
+
         return $this;
     }
 
     /**
      * Return a collection of resources.
-     *
-     * @return JsonResponse
      */
     public function index(): JsonResponse
     {
-        $transformer = new $this->collectionTransformer();
+        $transformer = new $this->collectionTransformer;
         $transformer = $transformer->setResource($this->repository->index());
+
         return $this->successfullApiResponse($transformer->toArray());
     }
 
     /**
      * Return dropdown data.
-     *
-     * @return JsonResponse
      */
     public function dropdown(): JsonResponse
     {
@@ -101,8 +88,6 @@ class BaseService implements BaseServiceContract
 
     /**
      * Return dropdown data for statuses.
-     *
-     * @return JsonResponse
      */
     public function dropdownForStatus(): JsonResponse
     {
@@ -114,51 +99,50 @@ class BaseService implements BaseServiceContract
     /**
      * Store a new resource.
      *
-     * @param array $validatedRequestData
-     * @return JsonResponse
+     * @param  array  $validatedRequestData
      */
     public function store($validatedRequestData): JsonResponse
     {
         $this->repository->store($validatedRequestData);
-        $transformer = new $this->transformer();
+        $transformer = new $this->transformer;
         $transformer = $transformer->setResource($this->repository->getModel());
+
         return $this->successfullApiResponse($transformer->toArray(), 201);
     }
 
     /**
      * Retrieve a specific resource by ID.
      *
-     * @param int|string $modelId
-     * @return JsonResponse
+     * @param  int|string  $modelId
      */
     public function get($modelId): JsonResponse
     {
         $model = $this->repository->find($modelId);
-        $transformer = new $this->transformer();
+        $transformer = new $this->transformer;
         $transformer = $transformer->setResource($model);
+
         return $this->successfullApiResponse($transformer->toArray(), 200);
     }
 
     /**
      * Update a specific resource.
      *
-     * @param int|string $modelId
-     * @param array $validatedRequestData
-     * @return JsonResponse
+     * @param  int|string  $modelId
+     * @param  array  $validatedRequestData
      */
     public function update($modelId, $validatedRequestData): JsonResponse
     {
         $this->repository->update($modelId, $validatedRequestData);
-        $transformer = new $this->transformer();
+        $transformer = new $this->transformer;
         $transformer = $transformer->setResource($this->repository->getModel());
+
         return $this->successfullApiResponse($transformer->toArray(), 200);
     }
 
     /**
      * Delete a resource by ID.
      *
-     * @param int|string $modelId
-     * @return JsonResponse
+     * @param  int|string  $modelId
      */
     public function delete($modelId): JsonResponse
     {
@@ -168,24 +152,24 @@ class BaseService implements BaseServiceContract
     /**
      * Destroy a resource by ID.
      *
-     * @param int|string $id
-     * @return JsonResponse
+     * @param  int|string  $id
      */
     public function destroy($id): JsonResponse
     {
         $this->repository->destroy($id);
+
         return $this->apiResponse([], 204);
     }
 
     /**
      * Destroy multiple resources by their IDs.
      *
-     * @param array $array
-     * @return JsonResponse
+     * @param  array  $array
      */
     public function destroyMulti($array): JsonResponse
     {
         $this->repository->destroyMulti($array);
+
         return $this->apiResponse([], 204);
     }
 
@@ -202,49 +186,48 @@ class BaseService implements BaseServiceContract
     /**
      * Add a custom query filter.
      *
-     * @param callable $filterFunction
      * @return $this
      */
     protected function addQueryFilter(callable $filterFunction)
     {
         $this->repository->addQueryFilter($filterFunction);
+
         return $this;
     }
 
     /**
      * Upload a file to the storage disk.
      *
-     * @param mixed $binaryData
-     * @param string $fileName
-     * @param string $folder
-     * @return string
+     * @param  mixed  $binaryData
+     * @param  string  $fileName
+     * @param  string  $folder
      */
     protected function uploadFile($binaryData, $fileName, $folder = 'uploads'): string
     {
         $uniqueFileName = uniqid();
-        $filePath = $folder . DIRECTORY_SEPARATOR . $uniqueFileName;
+        $filePath = $folder.DIRECTORY_SEPARATOR.$uniqueFileName;
         $path = Storage::disk(config('filesystems.default'))->putFileAs($filePath, $binaryData, $fileName);
+
         return $path;
     }
 
     /**
      * Return a JSON API response.
      *
-     * @param mixed $data
-     * @param int $statusCode
-     * @return JsonResponse
+     * @param  mixed  $data
+     * @param  int  $statusCode
      */
     public function apiResponse($data, $statusCode): JsonResponse
     {
-        if ($statusCode === 204) return response()->json(null, 204);
+        if ($statusCode === 204) {
+            return response()->json(null, 204);
+        }
+
         return response()->json($data, $statusCode);
     }
 
     /**
      * Return a successful API response (HTTP 200).
-     *
-     * @param array|Collection|EloquentCollection $data
-     * @return JsonResponse
      */
     public function successfullApiResponse(array|Collection|EloquentCollection $data): JsonResponse
     {
@@ -254,7 +237,7 @@ class BaseService implements BaseServiceContract
     /**
      * Return an API response with validation errors (HTTP 422).
      *
-     * @param mixed $data
+     * @param  mixed  $data
      * @return JsonResponse
      */
     public function apiResponseWithValidationErrors($data)
@@ -265,7 +248,7 @@ class BaseService implements BaseServiceContract
     /**
      * Return an API response with server errors (HTTP 500).
      *
-     * @param mixed $data
+     * @param  mixed  $data
      * @return JsonResponse
      */
     public function apiResponseWithServerErrors($data)
@@ -276,7 +259,7 @@ class BaseService implements BaseServiceContract
     /**
      * Return an API response when authentication fails (HTTP 401).
      *
-     * @param mixed $data
+     * @param  mixed  $data
      * @return JsonResponse
      */
     public function apiResponseWithAuthenticationFailedError($data)
@@ -287,7 +270,7 @@ class BaseService implements BaseServiceContract
     /**
      * Return an API response when authorization fails (HTTP 403).
      *
-     * @param mixed $data
+     * @param  mixed  $data
      * @return JsonResponse
      */
     public function apiResponseWithAuthorizationFailedError($data)

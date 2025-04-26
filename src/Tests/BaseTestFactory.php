@@ -2,12 +2,11 @@
 
 namespace Tests\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
-abstract class BaseFactory {
-
-    abstract public function getModelClassName() : string;
+abstract class BaseFactory
+{
+    abstract public function getModelClassName(): string;
 
     /**
      * The modal which was just created
@@ -15,6 +14,7 @@ abstract class BaseFactory {
      * @var Model
      */
     protected $createdModal;
+
     /**
      * The modal which was just made
      *
@@ -22,48 +22,53 @@ abstract class BaseFactory {
      */
     protected $madeModal;
 
-    function created()
+    public function created()
     {
         return $this->createdModal;
     }
-    function made()
+
+    public function made()
     {
         return $this->madeModal;
     }
 
-    function getModel() : Model
+    public function getModel(): Model
     {
-        return new($this->getModelClassName());
+        return new ($this->getModelClassName());
     }
 
-    function create($overrides= [])
+    public function create($overrides = [])
     {
         $this->createdModal = $this->getModel()->factory()->create($overrides);
         $this->createdModal->refresh();
+
         return $this->createdModal;
     }
-    function make($overrides = [])
+
+    public function make($overrides = [])
     {
         $this->madeModal = $this->getModel()->factory()->make($overrides);
+
         return $this->madeModal;
     }
-    function creates(int $number,$overrides = [])
+
+    public function creates(int $number, $overrides = [])
     {
         $models = [];
-        for($i=0;$i<$number;$i++)
-        {
+        for ($i = 0; $i < $number; $i++) {
             $models[] = $this->getModel()->factory()->create($overrides);
         }
-        return $models;
-    }
-    function makes(int $number,$overrides = [])
-    {
-        $models = [];
-        for($i=0;$i<$number;$i++)
-        {
-            $models[] = $this->getModel()->factory()->make($overrides);
-        }
+
         return $models;
     }
 
+    public function makes(int $number, $overrides = [])
+    {
+        $models = [];
+        for ($i = 0; $i < $number; $i++) {
+            $models[] = $this->getModel()->factory()->make($overrides);
+        }
+
+        return $models;
+    }
 }

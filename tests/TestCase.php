@@ -3,8 +3,8 @@
 namespace NoamanAhmed\ApiCrudGenerator\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use NoamanAhmed\ApiCrudGenerator\ApiCrudGeneratorServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

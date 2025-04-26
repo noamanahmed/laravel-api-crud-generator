@@ -16,12 +16,9 @@ class Init extends Command
     protected $description = 'Instanties the CRUD';
 
     protected $stubsPath = '/stubs';
-    
+
     /**
      * Execute the console command.
      */
-    public function handle()
-    {
-
-    }
+    public function handle() {}
 }
