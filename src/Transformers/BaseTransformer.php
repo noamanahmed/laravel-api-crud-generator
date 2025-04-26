@@ -5,6 +5,7 @@ namespace NoamanAhmed\Transformers;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use NoamanAhmed\Contracts\BaseTransformerContract;
 
 class BaseTransformer implements BaseTransformerContract
 {

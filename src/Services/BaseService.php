@@ -7,9 +7,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
-use NoamanAhmed\Repositories\BaseRepositoryContract;
-use NoamanAhmed\Transformers\BaseCollectionTransformerContract;
-use NoamanAhmed\Transformers\BaseTransformerContract;
+use NoamanAhmed\Contracts\BaseRepositoryContract;
+use NoamanAhmed\Contracts\BaseCollectionTransformerContract;
+use NoamanAhmed\Contracts\BaseServiceContract;
+use NoamanAhmed\Contracts\BaseTransformerContract;
 
 /**
  * Class BaseService
@@ -194,7 +195,7 @@ class BaseService implements BaseServiceContract
      */
     protected function getQueryFilters()
     {
-        return $this->repository->queryFilters;
+        return $this->repository->getQueryFilters();
     }
 
     /**

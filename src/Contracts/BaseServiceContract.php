@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Services;
+namespace NoamanAhmed\Contracts;
 
 /**
  * Interface BaseServiceContract

@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Repositories;
+namespace NoamanAhmed\Contracts;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Exporters;
+namespace NoamanAhmed\Contracts;
 
 interface BaseExporterContract
 {
