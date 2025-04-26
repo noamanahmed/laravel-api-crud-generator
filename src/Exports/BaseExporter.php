@@ -5,7 +5,7 @@ namespace NoamanAhmed\Exports;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use NoamanAhmed\ApiCrudGenerator\Enums\ExporterEnum;
-use NoamanAhmed\Contracts\BaseExporterContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseExporterContract;
 
 abstract class BaseExporter implements BaseExporterContract
 {

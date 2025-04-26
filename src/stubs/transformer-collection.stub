@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 use NoamanAhmed\Transformers\BaseCollectionTransformer;
-use NoamanAhmed\Contracts\BaseTransformerContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseTransformerContract;
 
 class {{ modelName }}CollectionTransformer extends BaseCollectionTransformer
 {

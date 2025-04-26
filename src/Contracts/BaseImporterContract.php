@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Contracts;
+namespace NoamanAhmed\ApiCrudGenerator\Contracts;
 
 interface BaseImporterContract
 {

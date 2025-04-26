@@ -3,7 +3,7 @@
 namespace NoamanAhmed\ApiCrudGenerator\Router;
 
 use Illuminate\Routing\ResourceRegistrar as BaseResourceRegistrar;
-use NoamanAhmed\Contracts\BaseRegistrarContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseRegistrarContract;
 
 class ResourceRegistrar extends BaseResourceRegistrar implements BaseRegistrarContract
 {

@@ -87,6 +87,11 @@ class CreateCrud extends Command
             $this->replaceStubVariables(base_path("database/seeders/{$crudName}Seeder.php"));
             $this->replaceStubVariables(base_path("resources/lang/en/{$snakedCrudName}.php"));
             $this->replaceStubVariables(base_path('app/Http/Controllers/'.$crudName.'Controller.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/StoreRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/UpdateRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ImportRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ExportRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/AnalyticsRequest.php'));
 
             $this->info('CRUD files generated successfully.');
 

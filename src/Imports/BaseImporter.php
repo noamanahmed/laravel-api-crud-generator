@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use NoamanAhmed\ApiCrudGenerator\Enums\ImporterEnum;
-use NoamanAhmed\Contracts\BaseImporterContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseImporterContract;
 
 abstract class BaseImporter implements BaseImporterContract
 {
