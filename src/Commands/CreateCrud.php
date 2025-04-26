@@ -90,7 +90,7 @@ class CreateCrud extends Command
 
             // code...
         } catch (\Throwable $th) {
-            dd($th->getTrace(), $th->getMessage());
+            // dd($th->getTrace(), $th->getMessage());
         }
     }
 
