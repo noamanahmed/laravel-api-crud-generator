@@ -97,4 +97,8 @@ interface BaseRepositoryContract
      * @return mixed
      */
     public function destroyMulti(array $ids);
+
+    public function getQueryFilters() : array;
+
+    public function addQueryFilter(callable $filterFunction);
 }

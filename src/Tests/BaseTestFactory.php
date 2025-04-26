@@ -39,7 +39,7 @@ abstract class BaseFactory
 
     public function create($overrides = [])
     {
-        $this->createdModal = $this->getModel()->factory()->create($overrides);
+        $this->createdModal = $this->getModelClassName()::factory()->create($overrides);
         $this->createdModal->refresh();
 
         return $this->createdModal;
@@ -47,7 +47,7 @@ abstract class BaseFactory
 
     public function make($overrides = [])
     {
-        $this->madeModal = $this->getModel()->factory()->make($overrides);
+        $this->madeModal = $this->getModelClassName()::factory()->make($overrides);
 
         return $this->madeModal;
     }
@@ -56,7 +56,7 @@ abstract class BaseFactory
     {
         $models = [];
         for ($i = 0; $i < $number; $i++) {
-            $models[] = $this->getModel()->factory()->create($overrides);
+            $models[] = $this->getModelClassName()::factory()->create($overrides);
         }
 
         return $models;
@@ -66,7 +66,7 @@ abstract class BaseFactory
     {
         $models = [];
         for ($i = 0; $i < $number; $i++) {
-            $models[] = $this->getModel()->factory()->make($overrides);
+            $models[] = $this->getModelClassName()::factory()->make($overrides);
         }
 
         return $models;
