@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Exporters;
+
+use App\Models\{{ modelName }};
+
+class {{ modelName }}Exporter extends BaseExporter {
+
+    public function __construct()
+    {
+        $this->model = {{ modelName }}::class;
+    }
+
+    /**
+     * This list of relations which will be exported in the exported file.
+     *
+     * @return array
+     */
+    public function relations() : array
+    {
+        return [
+            // 'details'
+        ];
+    }
+    /**
+     * The list of columns you need to export. Make sure the headerColumsn and columns are in sync to avoid errors
+     *
+     * @return array
+     */
+    public function columns() : array
+    {
+        return [
+            'id',
+            'name',
+            'description'
+        ];
+    }
+    /**
+     * The header columns of the exported file.
+     *
+     * @return array
+     */
+    public function headerColumns() : array
+    {
+        return [
+            'id',
+            'name',
+            'description'
+        ];
+    }
+}
+

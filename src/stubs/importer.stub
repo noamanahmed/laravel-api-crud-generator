@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Importers;
+use App\Models\{{ modelName }};
+
+class {{ modelName }}Importer extends BaseImporter {
+
+    public function __construct()
+    {
+        $this->model = {{ modelName }}::class;
+    }
+
+    public function columns() : array
+    {
+        return [
+            'id',
+            'name',
+            'description',
+        ];
+    }
+
+    public function headerColumns() : array
+    {
+        return [
+            'id',
+            'name',
+            'description',
+        ];
+    }
+
+    public function skipHeaderColumns() : array
+    {
+        return [
+            'entityName',
+            'translations'
+        ];
+    }
+
+    public function uniqueColumns() : array
+    {
+        return [
+            'id',
+        ];
+    }
+    public function relations() : array
+    {
+        return [
+            // [
+            //     'columnName' => 'details',
+            //     'importTranslation' =>  true,
+            //     'runBeforeMainImporter' => false,
+            //     'relationType' => 'parent', // Handles one to one and one to many relationships
+            //     'importer' => UserSettingImporter::class,
+            // ],
+        ];
+    }
+
+}

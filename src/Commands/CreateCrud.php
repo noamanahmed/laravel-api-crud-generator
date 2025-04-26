@@ -31,10 +31,10 @@ class CreateCrud extends Command
             // $this->createFormRequests($crudName);
 
             // Generate Controller
-            Artisan::call('make:controller', [
-                'name' => "App\Http\Controllers\Api\V1\\{$crudName}Controller",
-                '--type' => 'crud',
-            ]);
+            // Artisan::call('make:controller', [
+            //     'name' => "App\Http\Controllers\Api\V1\\{$crudName}Controller",
+            //     '--type' => 'crud',
+            // ]);
 
             Artisan::call('make:model', [
                 'name' => $crudName,
@@ -57,23 +57,23 @@ class CreateCrud extends Command
             $testPath = base_path("tests/{$crudPath}");
             $this->makeDirectory($testPath);
 
+            $this->copyStub('controller', $crudName . 'Controller', base_path('app/Http/Controllers/'));
             $this->copyStub('store.request', 'StoreRequest', base_path('app/Http/Requests/'.$crudName));
             $this->copyStub('update.request', 'UpdateRequest', base_path('app/Http/Requests/'.$crudName));
             $this->copyStub('import.request', 'ImportRequest', base_path('app/Http/Requests/'.$crudName));
             $this->copyStub('export.request', 'ExportRequest', base_path('app/Http/Requests/'.$crudName));
             $this->copyStub('analytics.request', 'AnalyticsRequest', base_path('app/Http/Requests/'.$crudName));
-
-            $this->copyStub('test.pest', $crudName.'CrudTest', base_path("tests/Feature/Modules/{$crudName}"));
-            $this->copyStub('test.factory', $crudName.'Factory', base_path('tests/Factories'));
-            $this->copyStub('repository', $crudName.'Repository', base_path('app/Repositories'));
-            $this->copyStub('service', $crudName.'Service', base_path('app/Services'));
-            $this->copyStub('transformer', $crudName.'Transformer', base_path('app/Transformers'));
-            $this->copyStub('exporter', $crudName.'Exporter', base_path('app/Exporters'));
-            $this->copyStub('importer', $crudName.'Importer', base_path('app/Importers'));
-            $this->copyStub('collectiontransformer', $crudName.'CollectionTransformer', base_path('app/Transformers'));
-            $this->copyStub('enum', $crudName.'StatusEnum', base_path('app/Enums'));
+            $this->copyStub('test.pest', $crudName . 'CrudTest', base_path("tests/Feature/Modules/{$crudName}"));
+            $this->copyStub('test.factory', $crudName . 'Factory', base_path('tests/Factories'));
+            $this->copyStub('repository', $crudName . 'Repository', base_path('app/Repositories'));
+            $this->copyStub('service', $crudName . 'Service', base_path('app/Services'));
+            $this->copyStub('transformer', $crudName . 'Transformer', base_path('app/Transformers'));
+            $this->copyStub('exporter', $crudName . 'Exporter', base_path('app/Exporters'));
+            $this->copyStub('importer', $crudName . 'Importer', base_path('app/Importers'));
+            $this->copyStub('transformer-collection', $crudName . 'CollectionTransformer', base_path('app/Transformers'));
+            $this->copyStub('enum', $crudName . 'StatusEnum', base_path('app/Enums'));
             $this->copyStub('language', $snakedCrudName, base_path('resources/lang/en'));
-            $this->replaceStubVariables(app_path("Http/Controllers/Api/V1/{$crudName}Controller.php"));
+            $this->replaceStubVariables(app_path("Http/Controllers/{$crudName}Controller.php"));
             $this->replaceStubVariables(app_path("Services/{$crudName}Service.php"));
             $this->replaceStubVariables(app_path("Repositories/{$crudName}Repository.php"));
             $this->replaceStubVariables(app_path("Transformers/{$crudName}Transformer.php"));
@@ -117,14 +117,13 @@ class CreateCrud extends Command
 
     protected function copyStub($stubName, $stubCrudName, $destinationFolder)
     {
-        // Get the path to the stubs folder
-        $stubsFolder = $this->stubsPath(); // This could be your base method for stubs path
 
         // Check if the user has published the stubs
         $publishedStub = resource_path("stubs/vendor/laravel-api-crud-generator/{$stubName}.stub");
+        $vendordStub = base_path("/vendor/noamanahmed/laravel-api-crud-generator/src/stubs/{$stubName}.stub");
 
         // If the published stub exists, use it; otherwise, fall back to the default stub path in your package
-        $sourceFilePath = file_exists($publishedStub) ? $publishedStub : "{$stubsFolder}/{$stubName}.stub";
+        $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendordStub;
 
         $destinationFilePath = "{$destinationFolder}/{$stubCrudName}.php";
 
