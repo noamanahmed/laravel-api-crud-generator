@@ -2,7 +2,7 @@
 
 namespace NoamanAhmed\ApiCrudGenerator\Enums;
 
-enum ExporterEnum: string
+enum ImporterEnum: string
 {
     use BaseEnum;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace NoamanAhmed\ApiCrudGenerator\Transformers\Tests;
+namespace NoamanAhmed\ApiCrudGenerator\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 
-abstract class BaseFactory
+abstract class BaseTestFactory
 {
     abstract public function getModelClassName(): string;
 
