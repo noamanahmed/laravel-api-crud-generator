@@ -1,8 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Exporters;
-
-use App\Enums\ExporterEnum;
+namespace NoamanAhmed\Contracts;
 
 interface BaseExporterContract
 {
@@ -16,7 +14,7 @@ interface BaseExporterContract
     /**
      * Changes format of the export
      *
-     * @param  ExporterEnum  $format
+     * @param  string  $format
      */
     public function switchFormat($format): self;
 

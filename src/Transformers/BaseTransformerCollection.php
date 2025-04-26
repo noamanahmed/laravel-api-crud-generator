@@ -4,6 +4,8 @@ namespace NoamanAhmed\Transformers;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as SupportCollection;
+use NoamanAhmed\Contracts\BaseCollectionTransformerContract;
+use NoamanAhmed\Contracts\BaseTransformerContract;
 
 abstract class BaseCollectionTransformer extends BaseTransformer implements BaseCollectionTransformerContract
 {

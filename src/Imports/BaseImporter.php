@@ -1,21 +1,15 @@
 <?php
 
-namespace NoamanAhmed\Importers;
+namespace NoamanAhmed\Imports;
 
-use App\Enums\ImporterEnum;
-use App\Translation;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use NoamanAhmed\ApiCrudGenerator\Enums\ImporterEnum;
+use NoamanAhmed\Contracts\BaseImporterContract;
 
 abstract class BaseImporter implements BaseImporterContract
 {
-    /**
-     * Allows enable/disabling translations import for the modal
-     *
-     * @var bool
-     */
-    public $importTranslations = true;
-
     /**
      * Allows import of dependend relationships
      *
@@ -26,35 +20,35 @@ abstract class BaseImporter implements BaseImporterContract
     /**
      * The default format to import the data
      *
-     * @var [ImporterEnum]
+     * @var \NoamanAhmed\ApiCrudGenerator\Enums\ImporterEnum
      */
     public $defaultImportFormat = ImporterEnum::CSV;
 
     /**
      * The selected format to import the data.
      *
-     * @var [ImporterEnum]
+     * @var \NoamanAhmed\ApiCrudGenerator\Enums\ImporterEnum
      */
     public $importFormat = ImporterEnum::CSV;
 
     /**
      * The number of records to batch insert.
      *
-     * @var [ImporterEnum]
+     * @var int
      */
     public $importQueryChunk = 20;
 
     /**
      * The Eloquent Model to import the data
      *
-     * @var [Modal]
+     * @var Model
      */
     public $model;
 
     /**
      * Importer errors.
      *
-     * @var [ImporterEnum]
+     * @var array
      */
     public $importErrors = [];
 
@@ -70,6 +64,7 @@ abstract class BaseImporter implements BaseImporterContract
 
     public function importRelationsShipsBeforeMainImport($data, $columns)
     {
+
         if (! $this->importRelationsShips) {
             return;
         }
@@ -82,7 +77,8 @@ abstract class BaseImporter implements BaseImporterContract
             $relations[] = $relation;
         }
 
-        return $this->importRelationsShips($data, $relations, $columns);
+        $this->importRelationsShips($data, $relations, $columns);
+
     }
 
     public function importRelationsShipsAfterMainImport($data, $columns)
@@ -99,7 +95,8 @@ abstract class BaseImporter implements BaseImporterContract
             $relations[] = $relation;
         }
 
-        return $this->importRelationsShips($data, $relations, $columns);
+        $this->importRelationsShips($data, $relations, $columns);
+
     }
 
     public function importRelationsShips($data, $relations, $columns)
@@ -114,6 +111,7 @@ abstract class BaseImporter implements BaseImporterContract
         foreach ($relations as $relation) {
             $this->importRelationsShip($data, $relation, $columns);
         }
+
     }
 
     public function importRelationsShip($data, $relation, $columns)
@@ -173,41 +171,6 @@ abstract class BaseImporter implements BaseImporterContract
         foreach ($dataChunks as $chunk) {
             $objModel = new $this->model;
             $objModel->upsert($chunk->toArray(), $this->uniqueColumns(), array_keys($chunk->first()));
-        }
-        DB::commit();
-    }
-
-    public function importTranslations($data, $columns, $headerRow)
-    {
-        if (! $this->importTranslations) {
-            return false;
-        }
-        if (empty($data)) {
-            return false;
-        }
-        $translationHeaderColumnIndex = array_search(self::TRANSLATIONS_COLUMN_NAME, $headerRow) !== false ? array_search(self::TRANSLATIONS_COLUMN_NAME, $headerRow) : -1;
-        if ($translationHeaderColumnIndex === -1) {
-            $this->importErrors[] = 'The file doesn\'t include translations but are required for this entity';
-
-            return false;
-        }
-        $data = collect($data);
-        $dataChunks = $data->chunk($this->importQueryChunk);
-        DB::beginTransaction();
-        foreach ($dataChunks as $chunk) {
-            $translationsChunk = [];
-            foreach ($chunk as $row) {
-                $singleModelTranslations = json_decode(base64_decode($row[$translationHeaderColumnIndex]), true);
-
-                foreach ($singleModelTranslations as $languageCode => $modelTranslationByLanguage) {
-                    foreach ($modelTranslationByLanguage as $modelTranslations) {
-                        $translationsChunk[] = $modelTranslations;
-                    }
-                }
-            }
-            if (! empty($translationsChunk)) {
-                Translation::upsert($translationsChunk, ['id', 'language_id'], ['language_id', 'key', 'value']);
-            }
         }
         DB::commit();
     }
@@ -312,7 +275,6 @@ abstract class BaseImporter implements BaseImporterContract
                 if (is_null($rowData[$headerRow[$key2]])) {
                     continue;
                 }
-                $rowData[$headerRow[$key2]] = removeDeepNestedArrays($rowData[$headerRow[$key2]], 0, 1);
             }
             $relationShipRows[] = $rowData;
         }
@@ -394,19 +356,21 @@ abstract class BaseImporter implements BaseImporterContract
         if (empty($data) || count($data) < 2) {
             $this->importErrors[] = 'The file you are trying to upload is empty.';
 
-            return;
+            return 'ERROR';
         }
         $columns = $this->getColumnListFromHeaderRow($data);
         if (empty($columns)) {
             $this->importErrors[] = 'The file you are trying to upload doesn\'t have a header row.';
 
-            return;
+            return 'ERROR';
+
         }
 
         if (! $this->validColumnListInHeaderRow($data[0])) {
             $this->importErrors[] = 'The file you are trying to upload has an invalid header row.';
 
-            return;
+            return 'ERROR';
+
         }
 
         $headerRow = array_shift($data);
@@ -417,55 +381,69 @@ abstract class BaseImporter implements BaseImporterContract
         // Adds performance overhead with nested transactions but ensure strong data consistency.
         DB::beginTransaction();
         $this->importRelationsShipsBeforeMainImport($relationshipRows, $columns);
-        $this->import($dataRows, $columns);
+        $this->import($dataRows);
         $this->importRelationsShipsAfterMainImport($relationshipRows, $columns);
         // Confirm if data rows import was successfull
         if (! $this->isSuccessfullImport()) {
             // Rollback data rows if there were any errors
             DB::rollBack();
 
-            return false;
+            return 'ERROR';
         }
-        $this->importTranslations($data, $columns, $headerRow);
         // Confirm if translations import were successfull
-        if (! $this->isSuccessfullImport()) {
+        if ($this->isSuccessfullImport() == false) {
             // Rollback translations rows if there were any errors
             DB::rollBack();
 
-            return false;
+            return 'ERROR';
         }
         DB::commit();
+
+        return 'OK';
+
     }
 
     public function fromRawXLSX()
     {
+        return 'TODO';
         // TODO
         // Architecture written. Conversion will be done over here.
     }
 
     public function fromRawPdf()
     {
+        return 'TODO';
         // TODO
         // Architecture written. Conversion will be done over here.
     }
 
-    public function fromCSV() {}
+    public function fromCSV()
+    {
+        return 'TODO';
+    }
 
     public function fromXLSX()
     {
+        return 'TODO';
+
         // TODO
         // Architecture written. Conversion will be done over here.
     }
 
     public function fromPdf()
     {
+        return 'TODO';
         // TODO
         // Architecture written. Conversion will be done over here.
     }
 
     public function isSuccessfullImport()
     {
-        return ! (count($this->importErrors) >= 1);
+        if (count($this->importErrors) >= 1) {
+            return false;
+        }
+
+        return true;
     }
 
     public function getErrors()

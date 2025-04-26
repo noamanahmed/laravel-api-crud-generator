@@ -2,6 +2,8 @@
 
 namespace NoamanAhmed\Policies;
 
+use Illuminate\Contracts\Auth\Authenticatable;
+
 /**
  * Class BasePolicy
  *
@@ -12,7 +14,7 @@ class BasePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(Authenticatable $user): bool
     {
         return true;
     }
@@ -22,7 +24,7 @@ class BasePolicy
      *
      * @param  mixed  $model
      */
-    public function view(User $user, $model): bool
+    public function view(Authenticatable $user, $model): bool
     {
         return true;
     }
@@ -30,7 +32,7 @@ class BasePolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(Authenticatable $user): bool
     {
         return true;
     }
@@ -40,7 +42,7 @@ class BasePolicy
      *
      * @param  mixed  $model
      */
-    public function update(User $user, $model): bool
+    public function update(Authenticatable $user, $model): bool
     {
         return true;
     }
@@ -50,7 +52,7 @@ class BasePolicy
      *
      * @param  mixed  $model
      */
-    public function delete(User $user, $model): bool
+    public function delete(Authenticatable $user, $model): bool
     {
         return true;
     }
@@ -60,7 +62,7 @@ class BasePolicy
      *
      * @param  mixed  $model
      */
-    public function restore(User $user, $model): bool
+    public function restore(Authenticatable $user, $model): bool
     {
         return true;
     }
@@ -70,7 +72,7 @@ class BasePolicy
      *
      * @param  mixed  $model
      */
-    public function forceDelete(User $user, $model): bool
+    public function forceDelete(Authenticatable $user, $model): bool
     {
         return true;
     }

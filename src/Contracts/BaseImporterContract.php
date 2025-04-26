@@ -1,8 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Importers;
-
-use App\Enums\ImporterEnum;
+namespace NoamanAhmed\Contracts;
 
 interface BaseImporterContract
 {
@@ -16,7 +14,7 @@ interface BaseImporterContract
     /**
      * Imports the required relationships before running the main import
      *
-     * @param  array  $relations
+     * @param  array  $data
      * @param  array  $columns
      * @return void
      */
@@ -25,7 +23,7 @@ interface BaseImporterContract
     /**
      * Imports the required relationships before running the main import
      *
-     * @param  array  $relations
+     * @param  array  $data
      * @param  array  $columns
      * @return void
      */
@@ -44,7 +42,7 @@ interface BaseImporterContract
     /**
      * Changes format of the import
      *
-     * @param  ImporterEnum  $format
+     * @param  string  $format
      */
     public function switchFormat($format): self;
 

@@ -119,8 +119,8 @@ class CreateCrud extends Command
     {
 
         // Check if the user has published the stubs
-        $publishedStub = resource_path("stubs/vendor/laravel-api-crud-generator/{$stubName}.stub");
-        $vendordStub = base_path("/vendor/noamanahmed/laravel-api-crud-generator/src/stubs/{$stubName}.stub");
+        $publishedStub = resource_path("stubs/vendor/api-crud-generator/{$stubName}.stub");
+        $vendordStub = base_path("/vendor/noamanahmed/api-crud-generator/src/stubs/{$stubName}.stub");
 
         // If the published stub exists, use it; otherwise, fall back to the default stub path in your package
         $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendordStub;

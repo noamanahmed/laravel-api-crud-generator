@@ -2,14 +2,15 @@
 
 namespace NoamanAhmed\Services;
 
-use App\Repositories\BaseRepositoryContract;
-use App\Transformers\BaseCollectionTransformerContract;
-use App\Transformers\BaseTransformerContract;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use NoamanAhmed\Contracts\BaseCollectionTransformerContract;
+use NoamanAhmed\Contracts\BaseRepositoryContract;
+use NoamanAhmed\Contracts\BaseServiceContract;
+use NoamanAhmed\Contracts\BaseTransformerContract;
 
 /**
  * Class BaseService
@@ -107,7 +108,7 @@ class BaseService implements BaseServiceContract
         $transformer = new $this->transformer;
         $transformer = $transformer->setResource($this->repository->getModel());
 
-        return $this->successfullApiResponse($transformer->toArray(), 201);
+        return $this->apiResponse($transformer->toArray(), 201);
     }
 
     /**
@@ -121,7 +122,21 @@ class BaseService implements BaseServiceContract
         $transformer = new $this->transformer;
         $transformer = $transformer->setResource($model);
 
-        return $this->successfullApiResponse($transformer->toArray(), 200);
+        return $this->successfullApiResponse($transformer->toArray());
+    }
+
+    /**
+     * Retrieve a specific resource by ID.
+     *
+     * @param  int|string  $modelId
+     */
+    public function find($modelId): JsonResponse
+    {
+        $model = $this->repository->find($modelId);
+        $transformer = new $this->transformer;
+        $transformer = $transformer->setResource($model);
+
+        return $this->successfullApiResponse($transformer->toArray());
     }
 
     /**
@@ -136,7 +151,7 @@ class BaseService implements BaseServiceContract
         $transformer = new $this->transformer;
         $transformer = $transformer->setResource($this->repository->getModel());
 
-        return $this->successfullApiResponse($transformer->toArray(), 200);
+        return $this->successfullApiResponse($transformer->toArray());
     }
 
     /**
@@ -180,7 +195,7 @@ class BaseService implements BaseServiceContract
      */
     protected function getQueryFilters()
     {
-        return $this->repository->queryFilters;
+        return $this->repository->getQueryFilters();
     }
 
     /**

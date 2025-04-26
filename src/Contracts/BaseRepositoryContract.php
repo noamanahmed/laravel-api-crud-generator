@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Repositories;
+namespace NoamanAhmed\Contracts;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -97,4 +97,8 @@ interface BaseRepositoryContract
      * @return mixed
      */
     public function destroyMulti(array $ids);
+
+    public function getQueryFilters(): array;
+
+    public function addQueryFilter(callable $filterFunction);
 }
