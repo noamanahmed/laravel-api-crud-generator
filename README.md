@@ -52,8 +52,10 @@ php artisan vendor:publish --tag="laravel-api-crud-generator-views"
 ## Usage
 
 ```php
-$apiCrudGenerator = new NoamanAhmed\ApiCrudGenerator();
-echo $apiCrudGenerator->echoPhrase('Hello, NoamanAhmed!');
+php artisan crud:create Post
+php artisan crud:create Comment
+php artisan crud:delete Comment
+
 ```
 
 ## Testing
