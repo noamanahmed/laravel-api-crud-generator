@@ -2,7 +2,7 @@
 
 namespace NoamanAhmed\Importers;
 
-use App\Enums\ImporterEnum;
+use NoamanAhmed\Enums\ImporterEnum;
 
 interface BaseImporterContract
 {

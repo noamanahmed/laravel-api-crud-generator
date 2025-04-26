@@ -2,7 +2,7 @@
 
 namespace NoamanAhmed\Exporters;
 
-use App\Enums\ExporterEnum;
+use NoamanAhmed\Enums\ExporterEnum;
 
 interface BaseExporterContract
 {

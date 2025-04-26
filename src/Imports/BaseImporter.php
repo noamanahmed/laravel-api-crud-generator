@@ -2,8 +2,8 @@
 
 namespace NoamanAhmed\Importers;
 
-use App\Enums\ImporterEnum;
-use App\Translation;
+use NoamanAhmed\Enums\ImporterEnum;
+use NoamanAhmed\Translation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 

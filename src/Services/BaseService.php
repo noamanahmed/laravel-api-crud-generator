@@ -2,9 +2,9 @@
 
 namespace NoamanAhmed\Services;
 
-use App\Repositories\BaseRepositoryContract;
-use App\Transformers\BaseCollectionTransformerContract;
-use App\Transformers\BaseTransformerContract;
+use NoamanAhmed\Repositories\BaseRepositoryContract;
+use NoamanAhmed\Transformers\BaseCollectionTransformerContract;
+use NoamanAhmed\Transformers\BaseTransformerContract;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

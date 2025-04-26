@@ -2,8 +2,8 @@
 
 namespace NoamanAhmed\Exporters;
 
-use App\Enums\ExporterEnum;
-use App\Translation;
+use NoamanAhmed\Enums\ExporterEnum;
+use NoamanAhmed\Translation;
 use Illuminate\Support\Str;
 
 abstract class BaseExporter implements BaseExportContract
