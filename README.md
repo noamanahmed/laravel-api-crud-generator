@@ -43,6 +43,16 @@ php artisan api-crud-generator:delete Comment
 
 ```
 
+Modify your routes files
+
+```php
+use App\Http\Controllers\PostController;
+
+Route::apiCrudResource('posts', PostController::class);
+
+
+```
+
 ## Testing
 
 ```bash
