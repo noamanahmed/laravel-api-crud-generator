@@ -5,7 +5,6 @@ namespace NoamanAhmed\Exports;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use NoamanAhmed\ApiCrudGenerator\Enums\ExporterEnum;
-use NoamanAhmed\ApiCrudGenerator\Translation;
 use NoamanAhmed\Exporters\BaseExporterContract;
 
 abstract class BaseExporter implements BaseExporterContract
@@ -152,11 +151,9 @@ abstract class BaseExporter implements BaseExporterContract
         return $dataRows;
     }
 
-
-
     public function switchFormat($format): BaseExporterContract
     {
-        $this->exportFormat = constant('App\Enums\ExporterEnum::' . $format);
+        $this->exportFormat = constant('App\Enums\ExporterEnum::'.$format);
 
         return $this;
     }
@@ -203,7 +200,8 @@ abstract class BaseExporter implements BaseExporterContract
         // Architecture written. Conversion will be done over here.
     }
 
-    public function toCSV() {
+    public function toCSV()
+    {
         return 'TODO';
 
     }

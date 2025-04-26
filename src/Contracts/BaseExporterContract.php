@@ -2,7 +2,6 @@
 
 namespace NoamanAhmed\Exporters;
 
-
 interface BaseExporterContract
 {
     /**
@@ -15,7 +14,7 @@ interface BaseExporterContract
     /**
      * Changes format of the export
      *
-     * @param  string $format
+     * @param  string  $format
      */
     public function switchFormat($format): self;
 

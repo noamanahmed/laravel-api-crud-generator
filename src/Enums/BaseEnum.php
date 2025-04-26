@@ -1,8 +1,8 @@
 <?php
 
 namespace NoamanAhmed\ApiCrudGenerator\Enums;
-use Illuminate\Support\Str;
 
+use Illuminate\Support\Str;
 use ReflectionEnum;
 
 trait BaseEnum

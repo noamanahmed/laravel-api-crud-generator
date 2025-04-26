@@ -64,7 +64,7 @@ abstract class BaseImporter implements BaseImporterContract
 
     public function importRelationsShipsBeforeMainImport($data, $columns)
     {
-        
+
         if (! $this->importRelationsShips) {
             return;
         }
@@ -78,7 +78,7 @@ abstract class BaseImporter implements BaseImporterContract
         }
 
         $this->importRelationsShips($data, $relations, $columns);
-        return;
+
     }
 
     public function importRelationsShipsAfterMainImport($data, $columns)
@@ -96,7 +96,7 @@ abstract class BaseImporter implements BaseImporterContract
         }
 
         $this->importRelationsShips($data, $relations, $columns);
-        return;
+
     }
 
     public function importRelationsShips($data, $relations, $columns)
@@ -112,7 +112,6 @@ abstract class BaseImporter implements BaseImporterContract
             $this->importRelationsShip($data, $relation, $columns);
         }
 
-        return;
     }
 
     public function importRelationsShip($data, $relation, $columns)
@@ -175,7 +174,6 @@ abstract class BaseImporter implements BaseImporterContract
         }
         DB::commit();
     }
-
 
     public function getColumnListFromHeaderRow($results)
     {
@@ -419,7 +417,8 @@ abstract class BaseImporter implements BaseImporterContract
         // Architecture written. Conversion will be done over here.
     }
 
-    public function fromCSV() {
+    public function fromCSV()
+    {
         return 'TODO';
     }
 
@@ -440,7 +439,10 @@ abstract class BaseImporter implements BaseImporterContract
 
     public function isSuccessfullImport()
     {
-        if(count($this->importErrors) >= 1) return false;
+        if (count($this->importErrors) >= 1) {
+            return false;
+        }
+
         return true;
     }
 
