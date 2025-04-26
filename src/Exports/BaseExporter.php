@@ -1,12 +1,14 @@
 <?php
 
-namespace NoamanAhmed\Exporters;
+namespace NoamanAhmed\Exports;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use NoamanAhmed\Enums\ExporterEnum;
-use NoamanAhmed\Translation;
+use NoamanAhmed\ApiCrudGenerator\Enums\ExporterEnum;
+use NoamanAhmed\ApiCrudGenerator\Translation;
+use NoamanAhmed\Exporters\BaseExporterContract;
 
-abstract class BaseExporter implements BaseExportContract
+abstract class BaseExporter implements BaseExporterContract
 {
     /**
      * Allows enable/disabling translations export for the modal
@@ -25,21 +27,21 @@ abstract class BaseExporter implements BaseExportContract
     /**
      * The default format to export the data
      *
-     * @var [ExporterEnum]
+     * @var \NoamanAhmed\ApiCrudGenerator\Enums\ExporterEnum
      */
     public $defaultExportFormat = ExporterEnum::CSV;
 
     /**
      * The selected format to export the data.
      *
-     * @var [ExporterEnum]
+     * @var \NoamanAhmed\ApiCrudGenerator\Enums\ExporterEnum
      */
     public $exportFormat = ExporterEnum::CSV;
 
     /**
      * The Eloquent Model to export the data
      *
-     * @var [Modal]
+     * @var Model
      */
     public $model;
 
@@ -59,7 +61,7 @@ abstract class BaseExporter implements BaseExportContract
         $request = request();
         $modelObj = new $this->model;
         $results = $modelObj
-            ->when(! empty($request->ids) && is_array($request->ids) && count($request->ids) > 0, function ($records) use ($request) {
+            ->when(! empty($request->ids) && is_array($request->ids), function ($records) use ($request) {
                 return $records->whereIn('id', (array) $request->ids);
             })
             ->when(! empty($request->type) && is_array($request->ids) && $request->type === 'module', function ($records) use ($request) {
@@ -143,21 +145,6 @@ abstract class BaseExporter implements BaseExportContract
 
                 $relation = base64_encode(json_encode($relation));
                 $rowData[] = $relation;
-
-            }
-            if ($this->exportTranslations) {
-                $translations = [];
-                $model = $this->model::find($row['id']);
-                if (! empty($model)) {
-                    foreach ($this->buildModelTranslations($model) as $translation) {
-                        $translations[] = $translation;
-                    }
-                }
-
-                foreach ($this->buildModelRelationsTranslations($relationIds) as $translation) {
-                    $translations[] = $translation;
-                }
-                $rowData[] = base64_encode(json_encode($translations));
             }
             $dataRows[] = $rowData;
         }
@@ -165,59 +152,11 @@ abstract class BaseExporter implements BaseExportContract
         return $dataRows;
     }
 
-    public function buildModelTranslations($model)
+
+
+    public function switchFormat($format): BaseExporterContract
     {
-        $language_ids = activeLanguages()->pluck('id', 'territory_code')->toArray();
-        $translations = Translation::whereIn('language_id', $language_ids)->where('key', 'like', translationKeyBase($model).'%')->with(['language'])->get()->groupBy('language_id')->toArray();
-        $output = [];
-
-        foreach ($translations as $key => $singleLanguageTranslations) {
-            foreach ($singleLanguageTranslations as $translation) {
-                $output[$translation['language']['territory_code']][] = [
-                    'id' => $translation['id'],
-                    'key' => $translation['key'],
-                    'value' => $translation['value'],
-                    'language_id' => $translation['language']['id'],
-                ];
-            }
-        }
-
-        return $output;
-    }
-
-    public function buildModelRelationsTranslations($relationsIds)
-    {
-        $output = [];
-        $objModel = new $this->model;
-        if (empty($relationsIds)) {
-            return $output;
-        }
-        foreach ($this->relations() as $relation) {
-            if (! array_key_exists($relation, $relationsIds)) {
-                continue;
-            }
-            $model = $objModel->$relation()->getRelated();
-            foreach ($relationsIds[$relation] as $relationId) {
-                $relationModel = $model->find($relationId);
-                if (empty($relationModel)) {
-                    continue;
-                }
-                $relationModelTranslations = $this->buildModelTranslations($relationModel);
-                if (empty($relationModelTranslations)) {
-                    continue;
-                }
-                foreach ($relationModelTranslations as $key => $relationModelTranslationsByLanguageCode) {
-                    $output[$key] = [...($output[$key] ?? []), ...$relationModelTranslationsByLanguageCode];
-                }
-            }
-        }
-
-        return $output;
-    }
-
-    public function switchFormat($format): BaseExportContract
-    {
-        $this->exportFormat = constant('App\Enums\ExporterEnum::'.$format);
+        $this->exportFormat = constant('App\Enums\ExporterEnum::' . $format);
 
         return $this;
     }
@@ -239,9 +178,7 @@ abstract class BaseExporter implements BaseExportContract
     public function relations(): array
     {
         // Override in child classes
-        return [
-
-        ];
+        return [];
     }
 
     public function toRawCSV()
@@ -253,26 +190,36 @@ abstract class BaseExporter implements BaseExportContract
 
     public function toRawXLSX()
     {
+        return 'TODO';
         // TODO
         // Architecture written. Conversion will be done over here.
     }
 
     public function toRawPdf()
     {
+        return 'TODO';
+
         // TODO
         // Architecture written. Conversion will be done over here.
     }
 
-    public function toCSV() {}
+    public function toCSV() {
+        return 'TODO';
+
+    }
 
     public function toXLSX()
     {
+        return 'TODO';
+
         // TODO
         // Architecture written. Conversion will be done over here.
     }
 
     public function toPdf()
     {
+        return 'TODO';
+
         // TODO
         // Architecture written. Conversion will be done over here.
     }
