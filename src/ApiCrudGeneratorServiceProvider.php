@@ -21,12 +21,14 @@ class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-api-crud-generator')
             ->hasConfigFile()
-            ->publishesServiceProvider('CrudServiceProvider')
 
             // ->hasViews()
             ->hasCommand(Init::class)
             ->hasCommand(CreateCrud::class)
             ->hasCommand(DeleteCrud::class);
+
+        $this->app->register(CrudServiceProvider::class);
+
     }
 
     public function bootingPackage()
