@@ -3,11 +3,10 @@
 namespace NoamanAhmed\ApiCrudGenerator\Providers;
 
 use Illuminate\Routing\ResourceRegistrar as BaseResourceRegistrar;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use NoamanAhmed\ApiCrudGenerator\Router\ResourceRegistrar;
-
 
 class CrudServiceProvider extends ServiceProvider
 {

@@ -1,15 +1,14 @@
 <?php
 
-
 namespace NoamanAhmed\ApiCrudGenerator\Router;
 
 use Illuminate\Routing\ResourceRegistrar as BaseResourceRegistrar;
 use NoamanAhmed\Contracts\BaseRegistrarContract;
 
-class ResourceRegistrar extends BaseResourceRegistrar  implements BaseRegistrarContract
+class ResourceRegistrar extends BaseResourceRegistrar implements BaseRegistrarContract
 {
     protected $resourceDefaults = [
-        'index','analytics','dropdown','dropdownForStatus','export','import','show','store','update','destroy','destroyMulti','updateStatus',
+        'index', 'analytics', 'dropdown', 'dropdownForStatus', 'export', 'import', 'show', 'store', 'update', 'destroy', 'destroyMulti', 'updateStatus',
     ];
 
     /**
@@ -18,7 +17,7 @@ class ResourceRegistrar extends BaseResourceRegistrar  implements BaseRegistrarC
      * @param  string  $name
      * @param  string  $base
      * @param  string  $controller
-     * @param  array   $options
+     * @param  array  $options
      * @return \Illuminate\Routing\Route
      */
     public function addResourceDropdown($name, $base, $controller, $options)
@@ -36,7 +35,7 @@ class ResourceRegistrar extends BaseResourceRegistrar  implements BaseRegistrarC
      * @param  string  $name
      * @param  string  $base
      * @param  string  $controller
-     * @param  array   $options
+     * @param  array  $options
      * @return \Illuminate\Routing\Route
      */
     public function addResourceDropdownForStatus($name, $base, $controller, $options)
@@ -54,7 +53,7 @@ class ResourceRegistrar extends BaseResourceRegistrar  implements BaseRegistrarC
      * @param  string  $name
      * @param  string  $base
      * @param  string  $controller
-     * @param  array   $options
+     * @param  array  $options
      * @return \Illuminate\Routing\Route
      */
     public function addResourceUpdateStatus($name, $base, $controller, $options)
@@ -66,14 +65,13 @@ class ResourceRegistrar extends BaseResourceRegistrar  implements BaseRegistrarC
         return $this->router->patch($uri, $action);
     }
 
-
-        /**
+    /**
      * Add the ajax method for a resourceful route.
      *
      * @param  string  $name
      * @param  string  $base
      * @param  string  $controller
-     * @param  array   $options
+     * @param  array  $options
      * @return \Illuminate\Routing\Route
      */
     public function addResourceDestroyMulti($name, $base, $controller, $options)
@@ -84,6 +82,7 @@ class ResourceRegistrar extends BaseResourceRegistrar  implements BaseRegistrarC
 
         return $this->router->delete($uri, $action);
     }
+
     public function addResourceImport($name, $base, $controller, $options)
     {
         $uri = $this->getResourceUri($name).'/import';
@@ -111,7 +110,8 @@ class ResourceRegistrar extends BaseResourceRegistrar  implements BaseRegistrarC
         return $this->router->post($uri, $action);
     }
 
-    public function getResourceDefaults() : array {
+    public function getResourceDefaults(): array
+    {
         return $this->resourceDefaults;
     }
 }

@@ -9,5 +9,5 @@ namespace NoamanAhmed\Contracts;
  */
 interface BaseRegistrarContract
 {
-    public function getResourceDefaults() : array;
+    public function getResourceDefaults(): array;
 }
