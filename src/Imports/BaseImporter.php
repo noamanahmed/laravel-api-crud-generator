@@ -2,10 +2,10 @@
 
 namespace NoamanAhmed\Importers;
 
-use NoamanAhmed\Enums\ImporterEnum;
-use NoamanAhmed\Translation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use NoamanAhmed\Enums\ImporterEnum;
+use NoamanAhmed\Translation;
 
 abstract class BaseImporter implements BaseImporterContract
 {

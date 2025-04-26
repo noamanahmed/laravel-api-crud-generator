@@ -1,7 +1,9 @@
 <?php
+
 namespace NoamanAhmed\ApiCrudGenerator\Enums;
 
-enum ExporterEnum: string {
+enum ExporterEnum: string
+{
     use BaseEnum;
 
     case CSV = 'csv';

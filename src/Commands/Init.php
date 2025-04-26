@@ -20,7 +20,8 @@ class Init extends Command
     /**
      * Execute the console command.
      */
-    public function handle() {
+    public function handle()
+    {
 
         $directories = [
             'tests/Factories',
@@ -32,7 +33,7 @@ class Init extends Command
             'app/Importers',
             'resources/lang/en',
         ];
-        
+
         foreach ($directories as $directory) {
             $this->makeDirectory(base_path($directory));
         }
