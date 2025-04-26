@@ -32,7 +32,7 @@ class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         $this->publishes([
-            __DIR__.'/../../stubs' => resource_path('stubs/vendor/laravel-api-crud-generator'),
-        ], 'laravel-api-crud-generator-stubs');
+            __DIR__.'/stubs' => resource_path('stubs/vendor/api-crud-generator'),
+        ], 'api-crud-generator-stubs');
     }
 }
