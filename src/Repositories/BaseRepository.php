@@ -101,7 +101,7 @@ class BaseRepository implements BaseRepositoryContract
     public function getQueryBuilder(): QueryBuilder
     {
         $builder = $this->model->query();
-        
+
         $queryBuilder = QueryBuilder::for($builder);
 
         if (! empty($this->filters)) {
