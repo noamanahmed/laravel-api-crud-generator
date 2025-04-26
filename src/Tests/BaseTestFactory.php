@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Transformers\Tests;
+namespace NoamanAhmed\ApiCrudGenerator\Transformers\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -10,7 +10,7 @@ use App\Http\Requests\{{ modelName }}\AnalyticsRequest;
 
 use App\Models\{{ modelName }};
 use App\Services\{{ modelName }}Service;
-use NoamanAhmed\Controllers\BaseController;
+use NoamanAhmed\ApiCrudGenerator\Controllers\BaseController;
 
 class {{ modelName }}Controller extends BaseController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Imports;
+namespace NoamanAhmed\ApiCrudGenerator\Imports;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;

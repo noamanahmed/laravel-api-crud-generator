@@ -3,7 +3,7 @@
 namespace App\Exporters;
 
 use App\Models\{{ modelName }};
-use NoamanAhmed\Exports\BaseExporter;
+use NoamanAhmed\ApiCrudGenerator\Exports\BaseExporter;
 
 class {{ modelName }}Exporter extends BaseExporter {
 

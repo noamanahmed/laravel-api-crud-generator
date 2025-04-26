@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Services;
+namespace NoamanAhmed\ApiCrudGenerator\Services;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Http\JsonResponse;

@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Exports;
+namespace NoamanAhmed\ApiCrudGenerator\Exports;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;

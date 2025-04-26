@@ -3,7 +3,7 @@
 namespace App\Transformers;
 
 use App\Models\{{ modelName }};
-use NoamanAhmed\Transformers\BaseTransformer;
+use NoamanAhmed\ApiCrudGenerator\Transformers\BaseTransformer;
 
 
 class {{ modelName }}Transformer extends BaseTransformer

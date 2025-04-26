@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Policies;
+namespace NoamanAhmed\ApiCrudGenerator\Policies;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Repositories;
+namespace NoamanAhmed\ApiCrudGenerator\Repositories;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

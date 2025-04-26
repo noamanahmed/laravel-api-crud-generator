@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\{{ modelName }};
-use NoamanAhmed\Repositories\BaseRepository;
+use NoamanAhmed\ApiCrudGenerator\Repositories\BaseRepository;
 
 class {{ modelName }}Repository extends BaseRepository{
 

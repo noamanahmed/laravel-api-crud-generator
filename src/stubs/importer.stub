@@ -2,7 +2,7 @@
 
 namespace App\Importers;
 use App\Models\{{ modelName }};
-use NoamanAhmed\Imports\BaseImporter;
+use NoamanAhmed\ApiCrudGenerator\Imports\BaseImporter;
 
 class {{ modelName }}Importer extends BaseImporter {
 
