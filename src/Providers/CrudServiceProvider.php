@@ -31,10 +31,7 @@ class CrudServiceProvider extends ServiceProvider
         Route::macro('apiCrudResource', function ($name, $controller, $options = []) {
             $registrar = app(BaseResourceRegistrar::class);
 
-            $routes = [];
-            if (method_exists($registrar, 'getResourceDefaults')) {
-                $routes = $registrar->getResourceDefaults();
-            }
+            $routes = $registrar->getResourceDefaults();
             $permission = $options['permission'] ?? $name;
             $routeName = $options['name'] ?? $name;
 
