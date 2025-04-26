@@ -22,14 +22,15 @@ You can install the package via composer:
 composer require noamanahmed/laravel-api-crud-generator
 ```
 
-You can publish the config file with:
+You can publish the config and provider file with this command:
 
 ```bash
+php artisan vendor:publish --tag="api-crud-generator-provider"
 php artisan vendor:publish --tag="api-crud-generator-stubs"
 ```
 
 ```bash
-php artisan api-crud-generator:init"
+php artisan api-crud-generator:init
 ```
 
 
