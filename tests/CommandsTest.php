@@ -28,7 +28,6 @@ it('can run the api-crud-generator:init command successfully and create necessar
     }
 });
 
-
 it('can run the api-crud-generator:create command successfully and generate CRUD files', function () {
     // Arrange
     $crudName = 'Post'; // or any dummy name
@@ -66,8 +65,7 @@ it('can run the api-crud-generator:create command successfully and generate CRUD
 
     foreach ($expectedFiles as $file) {
         $exists = File::exists($file);
-        if(!$exists)
-        {
+        if (! $exists) {
             dd($file);
         }
         expect($exists)->toBeTrue();
