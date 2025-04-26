@@ -6,6 +6,7 @@ use App\Enums\{{ modelName }}StatusEnum;
 use App\Repositories\{{ modelName }}Repository;
 use App\Transformers\{{ modelName }}CollectionTransformer;
 use App\Transformers\{{ modelName }}Transformer;
+use NoamanAhmed\ApiCrudGenerator\Services\BaseService;
 
 class {{ modelName }}Service extends BaseService{
 

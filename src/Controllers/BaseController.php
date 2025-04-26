@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Controllers;
+namespace NoamanAhmed\ApiCrudGenerator\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;

@@ -1,16 +1,16 @@
 <?php
 
-namespace NoamanAhmed\Services;
+namespace NoamanAhmed\ApiCrudGenerator\Services;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
-use NoamanAhmed\Contracts\BaseCollectionTransformerContract;
-use NoamanAhmed\Contracts\BaseRepositoryContract;
-use NoamanAhmed\Contracts\BaseServiceContract;
-use NoamanAhmed\Contracts\BaseTransformerContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseCollectionTransformerContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseRepositoryContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseServiceContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseTransformerContract;
 
 /**
  * Class BaseService

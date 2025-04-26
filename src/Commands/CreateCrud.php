@@ -86,6 +86,12 @@ class CreateCrud extends Command
             $this->replaceStubVariables(base_path("tests/Factories/{$crudName}Factory.php"));
             $this->replaceStubVariables(base_path("database/seeders/{$crudName}Seeder.php"));
             $this->replaceStubVariables(base_path("resources/lang/en/{$snakedCrudName}.php"));
+            $this->replaceStubVariables(base_path('app/Http/Controllers/'.$crudName.'Controller.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/StoreRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/UpdateRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ImportRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ExportRequest.php'));
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/AnalyticsRequest.php'));
 
             $this->info('CRUD files generated successfully.');
 
@@ -93,27 +99,6 @@ class CreateCrud extends Command
             // code...
         } catch (\Throwable $th) {
             throw $th;
-        }
-    }
-
-    protected function createFormRequests($crudName)
-    {
-
-        $requestNames = [
-            'Store',
-            'Update',
-            'Delete',
-            'Import',
-            'Export',
-            'Analytics',
-        ];
-
-        $crudNameFolderName = str($crudName)->ucfirst()->toString();
-        foreach ($requestNames as $name) {
-
-            Artisan::call('make:request', [
-                'name' => $crudNameFolderName.'/'.$name.'Request',
-            ]);
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Contracts;
+namespace NoamanAhmed\ApiCrudGenerator\Contracts;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;

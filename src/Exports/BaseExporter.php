@@ -1,11 +1,11 @@
 <?php
 
-namespace NoamanAhmed\Exports;
+namespace NoamanAhmed\ApiCrudGenerator\Exports;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseExporterContract;
 use NoamanAhmed\ApiCrudGenerator\Enums\ExporterEnum;
-use NoamanAhmed\Contracts\BaseExporterContract;
 
 abstract class BaseExporter implements BaseExporterContract
 {

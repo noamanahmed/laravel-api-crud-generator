@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\Models;
+namespace NoamanAhmed\ApiCrudGenerator\Models;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

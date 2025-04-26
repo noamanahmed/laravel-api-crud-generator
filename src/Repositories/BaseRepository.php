@@ -1,11 +1,11 @@
 <?php
 
-namespace NoamanAhmed\Repositories;
+namespace NoamanAhmed\ApiCrudGenerator\Repositories;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use NoamanAhmed\Contracts\BaseRepositoryContract;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseRepositoryContract;
 use RuntimeException;
 use Spatie\QueryBuilder\QueryBuilder;
 

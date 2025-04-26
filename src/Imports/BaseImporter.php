@@ -1,12 +1,12 @@
 <?php
 
-namespace NoamanAhmed\Imports;
+namespace NoamanAhmed\ApiCrudGenerator\Imports;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseImporterContract;
 use NoamanAhmed\ApiCrudGenerator\Enums\ImporterEnum;
-use NoamanAhmed\Contracts\BaseImporterContract;
 
 abstract class BaseImporter implements BaseImporterContract
 {

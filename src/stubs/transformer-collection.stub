@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Transformers;
+use NoamanAhmed\ApiCrudGenerator\Transformers\BaseCollectionTransformer;
+use NoamanAhmed\ApiCrudGenerator\Contracts\BaseTransformerContract;
 
 class {{ modelName }}CollectionTransformer extends BaseCollectionTransformer
 {
