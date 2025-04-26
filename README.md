@@ -37,9 +37,9 @@ php artisan api-crud-generator:init
 ## Usage
 
 ```php
-php artisan crud:create Post
-php artisan crud:create Comment
-php artisan crud:delete Comment
+php artisan api-crud-generator:create Post
+php artisan api-crud-generator:create Comment
+php artisan api-crud-generator:delete Comment
 
 ```
 
