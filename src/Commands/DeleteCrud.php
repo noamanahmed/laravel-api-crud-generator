@@ -75,7 +75,7 @@ class DeleteCrud extends Command
             if (Str::contains($file->getFilename(), $snakeCrudName)) {
                 // Delete the matching migration file
                 File::delete($file->getRealPath());
-                echo 'Deleted migration file: '.$file->getFilename().PHP_EOL;
+                $this->info('Deleted migration file: '.$file->getFilename().PHP_EOL);
             }
         }
     }
