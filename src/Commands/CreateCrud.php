@@ -97,7 +97,6 @@ class CreateCrud extends Command
         }
     }
 
-
     protected function copyStub($stubName, $stubCrudName, $destinationFolder)
     {
 
