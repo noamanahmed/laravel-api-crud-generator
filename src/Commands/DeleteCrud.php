@@ -34,7 +34,7 @@ class DeleteCrud extends Command
         $filePaths = [
             'app/Enums/'.$crudName.'StatusEnum.php',
             'app/Exporters/'.$crudName.'Exporter.php',
-            'app/Http/Controllers/Api/V1/'.$crudName.'Controller.php',
+            'app/Http/Controllers/'.$crudName.'Controller.php',
             'app/Http/Requests/'.$titleCrudName.'/',
             'app/Importers/'.$crudName.'Importer.php',
             'app/Models/'.$crudName.'.php',

@@ -89,12 +89,13 @@ class CreateCrud extends Command
 
             $this->info('CRUD files generated successfully.');
 
+            return 0;
             // code...
         } catch (\Throwable $th) {
             throw $th;
-            return 1;
             // dd($th->getTrace(), $th->getMessage());
         }
+        return 1;
     }
 
     protected function createFormRequests($crudName)
