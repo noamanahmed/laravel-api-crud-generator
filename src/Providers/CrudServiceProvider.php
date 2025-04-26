@@ -41,7 +41,7 @@ class CrudServiceProvider extends ServiceProvider
             return Route::resource($name, $controller, array_merge([
                 'only' => $routes,
             ], $options))
-            ->names($routeName);
+                ->names($routeName);
             // ->middleware('authorize.api:'.$permission);
         });
     }
