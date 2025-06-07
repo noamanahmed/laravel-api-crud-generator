@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\ApiCrudGenerator;
+namespace NoamanAhmed\ApiCrudGenerator\Filters;
 
 use Spatie\QueryBuilder\QueryBuilder;
 

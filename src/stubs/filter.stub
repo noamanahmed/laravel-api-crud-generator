@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-use NoamanAhmed\ApiCrudGenerator\BaseFilter;
+use NoamanAhmed\ApiCrudGenerator\Filters\BaseFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use NoamanAhmed\ApiCrudGenerator\Exceptions\UnAllowedFilterException;
 

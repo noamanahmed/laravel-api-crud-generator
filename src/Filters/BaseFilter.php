@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\ApiCrudGenerator;
+namespace NoamanAhmed\ApiCrudGenerator\Filters;
 
 use NoamanAhmed\ApiCrudGenerator\Exceptions\UnAllowedFilterException;
 use Spatie\QueryBuilder\QueryBuilder;
