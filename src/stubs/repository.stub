@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\{{ modelName }};
+use App\Filters\{{ modelName }}Filter();
 use NoamanAhmed\ApiCrudGenerator\BaseFilterContract;
 use NoamanAhmed\ApiCrudGenerator\Repositories\BaseRepository;
 
@@ -17,7 +18,7 @@ class {{ modelName }}Repository extends BaseRepository{
     public function __construct()
     {
         $this->model = new {{ modelName }}();
-        $this->filter = new \App\Filters\{{ modelName }}Filter();
+        $this->filter = new {{ modelName }}Filter();
         parent::__construct();
     }
 }
