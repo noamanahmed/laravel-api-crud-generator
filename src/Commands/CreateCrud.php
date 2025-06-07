@@ -74,6 +74,8 @@ class CreateCrud extends Command
             $this->copyStub('transformer-collection', $crudName.'CollectionTransformer', base_path('app/Transformers'));
             $this->copyStub('enum', $crudName.'StatusEnum', base_path('app/Enums'));
             $this->copyStub('language', $snakedCrudName, base_path('resources/lang/en'));
+            $this->copyStub('filter', $crudName.'Filter', base_path('app/Filters'));
+
             $this->replaceStubVariables(app_path("Http/Controllers/{$crudName}Controller.php"));
             $this->replaceStubVariables(app_path("Services/{$crudName}Service.php"));
             $this->replaceStubVariables(app_path("Repositories/{$crudName}Repository.php"));
