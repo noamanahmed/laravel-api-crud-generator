@@ -14,7 +14,7 @@ class BaseRepository implements BaseRepositoryContract
 {
     protected Model $model;
 
-    protected BaseFilterContract|null $filter;
+    protected ?BaseFilterContract $filter;
 
     protected string $primaryKey = 'id';
 
@@ -158,9 +158,8 @@ class BaseRepository implements BaseRepositoryContract
         foreach ($this->queryFilters as $filter) {
             $queryBuilder = $filter($queryBuilder);
         }
-        
-        if($this->filter instanceof BaseFilterContract)
-        {
+
+        if ($this->filter instanceof BaseFilterContract) {
             $queryBuilder = app($this->filter)->apply($queryBuilder);
         }
 
