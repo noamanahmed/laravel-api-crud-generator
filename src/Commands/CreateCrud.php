@@ -96,7 +96,6 @@ class CreateCrud extends Command
             $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/AnalyticsRequest.php'));
             $this->replaceStubVariables(app_path("Filters/{$crudName}Filter.php"));
 
-
             $this->info('CRUD files generated successfully.');
 
             return 0;
