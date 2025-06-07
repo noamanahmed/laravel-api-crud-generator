@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Models\{{ modelName }};
+use NoamanAhmed\ApiCrudGenerator\BaseFilterContract;
 use NoamanAhmed\ApiCrudGenerator\Repositories\BaseRepository;
 
 class {{ modelName }}Repository extends BaseRepository{
 
+    protected ?BaseFilterContract $filter;
     protected Array $filters = ['id'];
     protected Array $searchableFilters = ['id','name'];
     protected Array $sorters = ['id'];
@@ -15,6 +17,7 @@ class {{ modelName }}Repository extends BaseRepository{
     public function __construct()
     {
         $this->model = new {{ modelName }}();
+        $this->filter = new \App\Filters\{{ modelName }}Filter();
         parent::__construct();
     }
 }
