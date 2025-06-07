@@ -5,6 +5,7 @@ namespace NoamanAhmed\ApiCrudGenerator\Repositories;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use NoamanAhmed\ApiCrudGenerator\BaseFilterContract;
 use NoamanAhmed\ApiCrudGenerator\Contracts\BaseRepositoryContract;
 use RuntimeException;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -12,6 +13,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 class BaseRepository implements BaseRepositoryContract
 {
     protected Model $model;
+
+    protected BaseFilterContract|null $filter;
 
     protected string $primaryKey = 'id';
 
@@ -154,6 +157,11 @@ class BaseRepository implements BaseRepositoryContract
 
         foreach ($this->queryFilters as $filter) {
             $queryBuilder = $filter($queryBuilder);
+        }
+        
+        if($this->filter instanceof BaseFilterContract)
+        {
+            $queryBuilder = app($this->filter)->apply($queryBuilder);
         }
 
         return $queryBuilder;
