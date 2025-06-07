@@ -2,8 +2,8 @@
 
 namespace NoamanAhmed\ApiCrudGenerator;
 
-use Spatie\QueryBuilder\QueryBuilder;
 use NoamanAhmed\ApiCrudGenerator\Exceptions\UnAllowedFilterException;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Class BaseFilter
@@ -19,8 +19,6 @@ abstract class BaseFilter implements BaseFilterContract
      * 'allowed' method exists (filterXXXAllowed), it is called before the filter method.
      * The allowed method can throw UnAllowedFilterException to block the filter.
      *
-     * @param QueryBuilder $queryBuilder
-     * @return QueryBuilder
      *
      * @throws UnAllowedFilterException
      */
@@ -36,7 +34,7 @@ abstract class BaseFilter implements BaseFilterContract
             }
 
             // Compose the allowed method name. e.g. filterByNameAllowed for filterByName
-            $allowedMethod = $method . 'Allowed';
+            $allowedMethod = $method.'Allowed';
 
             // Prepare to get reflection parameters for current filter method
             $reflection = new \ReflectionMethod($this, $method);
@@ -47,7 +45,7 @@ abstract class BaseFilter implements BaseFilterContract
             // Remaining params for filter method will be null (or could be improved with actual args)
             $filterArgs = [$queryBuilder];
             for ($i = 1; $i < count($params); $i++) {
-                $filterArgs[] = null; 
+                $filterArgs[] = null;
             }
 
             $allowed = true;
@@ -68,8 +66,7 @@ abstract class BaseFilter implements BaseFilterContract
                 $allowed = $this->$allowedMethod(...$allowedArgs);
             }
 
-            if($allowed === false)
-            {
+            if ($allowed === false) {
                 // If allowed method returns false, we'll skip this filter
                 continue;
             }
@@ -80,4 +77,3 @@ abstract class BaseFilter implements BaseFilterContract
         return $queryBuilder;
     }
 }
-
