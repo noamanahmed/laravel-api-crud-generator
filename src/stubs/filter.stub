@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Filters;
+
+use NoamanAhmed\ApiCrudGenerator\BaseFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use NoamanAhmed\ApiCrudGenerator\Exceptions\UnAllowedFilterException;
+
+class {{ modelName }}Filter extends BaseFilter
+{
+    /**
+     * Filter {{ model }}s by name.
+     *
+     * @param QueryBuilder $queryBuilder
+     * @param string|null $name
+     * @return QueryBuilder
+     */
+    public function filterByName(QueryBuilder $queryBuilder, ?string $name): QueryBuilder
+    {
+        if ($name) {
+            return $queryBuilder->where('name', 'like', "%{$name}%");
+        }
+        return $queryBuilder;
+    }
+
+    /**
+     * Allowed check for the name filter.
+     * Throws exception if filtering by name is not allowed.
+     *
+     * @param QueryBuilder $queryBuilder
+     * @param string|null $name
+     * @return bool
+     * @throws UnAllowedFilterException
+     */
+    public function filterByNameAllowed(QueryBuilder $queryBuilder, ?string $name): bool
+    {
+        // Example allowed condition: only allow if name length > 2
+        // if ($name !== null && strlen($name) <= 2) {
+        //    throw new UnAllowedFilterException("Filtering by name '{$name}' is not allowed due to insufficient length.");
+        // }
+        return true;
+    }
+
+}
+
