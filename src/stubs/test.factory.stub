@@ -3,9 +3,9 @@
 namespace Tests\Factories;
 
 use App\Models\{{ modelName }};
-use NoamanAhmed\ApiCrudGenerator\Tests\BaseFactory;
+use NoamanAhmed\ApiCrudGenerator\Tests\BaseTestFactory;
 
-class {{ modelName }}Factory extends BaseFactory {
+class {{ modelName }}Factory extends BaseTestFactory {
 
     public function getModelClassName() : string
     {
