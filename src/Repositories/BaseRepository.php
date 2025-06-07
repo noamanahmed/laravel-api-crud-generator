@@ -5,8 +5,8 @@ namespace NoamanAhmed\ApiCrudGenerator\Repositories;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use NoamanAhmed\ApiCrudGenerator\BaseFilterContract;
 use NoamanAhmed\ApiCrudGenerator\Contracts\BaseRepositoryContract;
+use NoamanAhmed\ApiCrudGenerator\Filters\BaseFilterContract;
 use RuntimeException;
 use Spatie\QueryBuilder\QueryBuilder;
 
