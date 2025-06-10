@@ -160,7 +160,7 @@ class BaseRepository implements BaseRepositoryContract
         }
 
         if (! is_null($this->filter)) {
-            $queryBuilder = app($this->filter)->apply($queryBuilder);
+            $queryBuilder = $this->filter->apply($queryBuilder);
         }
 
         return $queryBuilder;
