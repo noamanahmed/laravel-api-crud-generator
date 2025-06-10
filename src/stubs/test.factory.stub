@@ -3,7 +3,7 @@
 namespace Tests\Factories;
 
 use App\Models\{{ modelName }};
-use NoamanAhmed\ApiCrudGenerator\Tests\BaseTestFactory;
+use NoamanAhmed\ApiCrudGenerator\TestProvider\BaseTestFactory;
 
 class {{ modelName }}Factory extends BaseTestFactory {
 
