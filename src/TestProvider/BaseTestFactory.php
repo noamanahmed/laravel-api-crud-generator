@@ -1,6 +1,6 @@
 <?php
 
-namespace NoamanAhmed\ApiCrudGenerator\Tests;
+namespace NoamanAhmed\ApiCrudGenerator\TestProvider;
 
 use Illuminate\Database\Eloquent\Model;
 
