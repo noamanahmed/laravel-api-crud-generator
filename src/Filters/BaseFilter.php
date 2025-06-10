@@ -30,9 +30,8 @@ abstract class BaseFilter implements BaseFilterContract
         foreach ($methods as $method) {
             if (strpos($method, 'filter') === false || strpos($method, 'filter') !== 0 || strpos($method, 'Allowed') !== false) {
                 // Not a filter method, skip
-                        continue;
-                }
-
+                continue;
+            }
 
             // Compose the allowed method name. e.g. filterByNameAllowed for filterByName
             $allowedMethod = $method.'Allowed';
