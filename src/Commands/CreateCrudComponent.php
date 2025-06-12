@@ -93,19 +93,20 @@ class CreateCrudComponent extends Command
                 'stub' => 'language',
                 'name' => $snakedCrudName,
                 'path' => base_path('resources/lang/en'),
-                'extension' => '.php'
+                'extension' => '.php',
             ],
         ];
 
-        if (!isset($componentsMap[$component])) {
+        if (! isset($componentsMap[$component])) {
             $this->error("Unsupported component: '{$component}'");
+
             return 1;
         }
 
         $config = $componentsMap[$component];
 
-        $fileName = $config['name'] . ($config['extension'] ?? '.php');
-        $filePath = rtrim($config['path'], '/') . '/' . $fileName;
+        $fileName = $config['name'].($config['extension'] ?? '.php');
+        $filePath = rtrim($config['path'], '/').'/'.$fileName;
 
         $this->makeDirectory($config['path']);
 
@@ -113,18 +114,19 @@ class CreateCrudComponent extends Command
         $this->replaceStubVariables($filePath);
 
         $this->info("Component '{$component}' generated successfully for {$crudName}.");
+
         return 0;
     }
 
     protected function copyStub($stubName, $stubCrudName, $destinationFolder)
     {
         $publishedStub = resource_path("stubs/vendor/api-crud-generator/{$stubName}.stub");
-        $vendorStub = __DIR__ . "/../stubs/{$stubName}.stub";
+        $vendorStub = __DIR__."/../stubs/{$stubName}.stub";
 
         $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendorStub;
         $destinationFilePath = "{$destinationFolder}/{$stubCrudName}";
 
-        if (!File::exists($destinationFilePath)) {
+        if (! File::exists($destinationFilePath)) {
             File::copy($sourceFilePath, $destinationFilePath);
             $this->info("Copied stub from '{$sourceFilePath}' to '{$destinationFilePath}'.");
         } else {
@@ -149,7 +151,7 @@ class CreateCrudComponent extends Command
 
     protected function makeDirectory($path)
     {
-        if (!is_dir($path)) {
+        if (! is_dir($path)) {
             mkdir($path, 0755, true);
         }
     }
