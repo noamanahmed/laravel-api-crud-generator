@@ -210,11 +210,11 @@ class BaseRepository implements BaseRepositoryContract
 
     public function update(int $id, array $data): Model
     {
-        $model = $this->model->findOrFail($id);
-        $model->fill($data)->save();
-        $model->refresh();
+        $this->model->findOrFail($id);
+        $this->model->fill($data)->save();
+        $this->model->refresh();
 
-        return $model;
+        return $this->model;
     }
 
     public function destroy(int $id): bool
