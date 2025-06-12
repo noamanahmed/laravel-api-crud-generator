@@ -28,14 +28,6 @@ class CreateCrud extends Command
             $snakedCrudName = Str::snake($crudName);
             $crudPath = "Feature/Modules/{$crudName}";
 
-            // $this->createFormRequests($crudName);
-
-            // Generate Controller
-            // Artisan::call('make:controller', [
-            //     'name' => "App\Http\Controllers\Api\V1\\{$crudName}Controller",
-            //     '--type' => 'crud',
-            // ]);
-
             Artisan::call('make:model', [
                 'name' => $crudName,
             ]);
