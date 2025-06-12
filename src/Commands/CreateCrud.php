@@ -28,14 +28,6 @@ class CreateCrud extends Command
             $snakedCrudName = Str::snake($crudName);
             $crudPath = "Feature/Modules/{$crudName}";
 
-            // $this->createFormRequests($crudName);
-
-            // Generate Controller
-            // Artisan::call('make:controller', [
-            //     'name' => "App\Http\Controllers\Api\V1\\{$crudName}Controller",
-            //     '--type' => 'crud',
-            // ]);
-
             Artisan::call('make:model', [
                 'name' => $crudName,
             ]);
@@ -74,6 +66,8 @@ class CreateCrud extends Command
             $this->copyStub('transformer-collection', $crudName.'CollectionTransformer', base_path('app/Transformers'));
             $this->copyStub('enum', $crudName.'StatusEnum', base_path('app/Enums'));
             $this->copyStub('language', $snakedCrudName, base_path('resources/lang/en'));
+            $this->copyStub('filter', $crudName.'Filter', base_path('app/Filters'));
+
             $this->replaceStubVariables(app_path("Http/Controllers/{$crudName}Controller.php"));
             $this->replaceStubVariables(app_path("Services/{$crudName}Service.php"));
             $this->replaceStubVariables(app_path("Repositories/{$crudName}Repository.php"));
@@ -92,6 +86,7 @@ class CreateCrud extends Command
             $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ImportRequest.php'));
             $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ExportRequest.php'));
             $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/AnalyticsRequest.php'));
+            $this->replaceStubVariables(app_path("Filters/{$crudName}Filter.php"));
 
             $this->info('CRUD files generated successfully.');
 

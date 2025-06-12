@@ -6,12 +6,15 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use NoamanAhmed\ApiCrudGenerator\Contracts\BaseRepositoryContract;
+use NoamanAhmed\ApiCrudGenerator\Filters\BaseFilterContract;
 use RuntimeException;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class BaseRepository implements BaseRepositoryContract
 {
     protected Model $model;
+
+    protected ?BaseFilterContract $filter;
 
     protected string $primaryKey = 'id';
 
@@ -156,6 +159,10 @@ class BaseRepository implements BaseRepositoryContract
             $queryBuilder = $filter($queryBuilder);
         }
 
+        if (! is_null($this->filter)) {
+            $queryBuilder = $this->filter->apply($queryBuilder);
+        }
+
         return $queryBuilder;
     }
 
@@ -203,11 +210,11 @@ class BaseRepository implements BaseRepositoryContract
 
     public function update(int $id, array $data): Model
     {
-        $model = $this->model->findOrFail($id);
-        $model->fill($data)->save();
-        $model->refresh();
+        $this->model = $this->model->findOrFail($id);
+        $this->model->fill($data)->save();
+        $this->model->refresh();
 
-        return $model;
+        return $this->model;
     }
 
     public function destroy(int $id): bool

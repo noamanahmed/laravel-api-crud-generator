@@ -3,13 +3,23 @@
 return [
     'menu' => [
         'label' => '{{ modelName }} Management',
+        'list' => '{{ modelName }} Management',
+        'create' => 'Create {{ modelName }}',
     ],
     'title' => [
         'page' => '{{ modelName }} Management',
         'table' => '{{ modelName }} List',
+        'create' => 'Create {{ modelName }}',
     ],
     'form' => [
         'labels' => [
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'email' => 'Email Address',
+            'password' => 'Password',
+            'confirm_password' => 'Confirm Password',
+        ],
+        'tooltips' => [
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
             'email' => 'Email Address',
@@ -23,7 +33,7 @@ return [
             'password' => 'Enter password',
             'confirm_password' => 'Confirm your password',
         ],
-        'helper_text' => [
+        'help_text' => [
             'email' => 'Please provide a valid email address.',
             'password' => 'Password must be at least 8 characters long.',
         ],
@@ -53,19 +63,46 @@ return [
             'button_label_default' => 'Delete',
             'button_label_loading' => 'Deleting...'
         ],
-        'filters' => [
-            'labels' => [
-                'verified' => 'Verified',
-                'blocked' => 'Blocked',
-            ],
-            'placeholders' => [
-                'verified' => 'Select verification status',
-                'blocked' => 'Select block status',
-            ],
-            'button_label_default' => 'Apply Filters',
-            'button_label_loading' => 'Applying  Filters ...',
-        ],
     ],
+    'filters' => [
+        'labels' => [
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'email' => 'Email Address',
+            'password' => 'Password',
+            'confirm_password' => 'Confirm Password',
+        ],
+        'tooltips' => [
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'email' => 'Email Address',
+            'password' => 'Password',
+            'confirm_password' => 'Confirm Password',
+        ],
+        'placeholders' => [
+            'first_name' => 'Enter first name',
+            'last_name' => 'Enter last name',
+            'email' => 'Enter email address',
+            'password' => 'Enter password',
+            'confirm_password' => 'Confirm your password',
+        ],
+        'help_text' => [
+            'email' => 'Please provide a valid email address.',
+            'password' => 'Password must be at least 8 characters long.',
+        ],
+        'validation_text' => [
+            'first_name_required' => 'First name is required.',
+            'last_name_required' => 'Last name is required.',
+            'email_required' => 'Email is required.',
+            'email_valid' => 'Please enter a valid email address.',
+            'password_required' => 'Password is required.',
+            'password_confirmation' => 'Passwords do not match.',
+        ],
+        'button_label_default' => 'Apply Filters',
+        'button_label_loading' => 'Applying  Filters ...',
+        'reset_button_label_default' => 'Reset Filter',
+        'reset_button_label_loading' => 'Resetting Filters ...',
+    ],    
     'messages' => [
         'success' => [
             'create' => '{{ modelName }} created successfully.',
