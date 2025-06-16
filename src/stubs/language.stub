@@ -73,27 +73,27 @@ return [
             'button_label_loading' => 'Deleting...'
         ],
         'reset' => [
-            'button_label_default' => 'Reset {{ model }}',
-            'button_label_loading' => 'Resetting {{ model }}...',
+            'button_label_default' => 'Reset {{ modelName }}',
+            'button_label_loading' => 'Resetting {{ modelName }}...',
         ],
     ],
     'filters' => [
         'labels' => [
-            'name' => '{{ model }} Name',
+            'name' => '{{ modelName }} Name',
             'reference_number' => 'Reference Number',
-            'image' => '{{ model }} Image',
+            'image' => '{{ modelName }} Image',
             'description' => 'Description',
             'confirm_password' => 'Confirm Password',
         ],
         'tooltips' => [
-            'name' => '{{ model }} Name',
+            'name' => '{{ modelName }} Name',
             'reference_number' => 'Reference Number',
-            'image' => '{{ model }} Image',
+            'image' => '{{ modelName }} Image',
             'description' => 'Description',
             'confirm_password' => 'Confirm Password',
         ],
         'placeholders' => [
-            'name' => 'Enter {{ model }} Name',
+            'name' => 'Enter {{ modelName }} Name',
             'reference_number' => 'Enter last name',
             'image' => 'Enter image address',
             'description' => 'Enter password',
@@ -104,7 +104,7 @@ return [
             'description' => 'Password must be at least 8 characters long.',
         ],
         'validation_text' => [
-            'name_required' => '{{ model }} Name is required.',
+            'name_required' => '{{ modelName }} Name is required.',
             'reference_number_required' => 'Last name is required.',
             'image_required' => 'Email is required.',
             'image_valid' => 'Please enter a valid image address.',
@@ -135,9 +135,9 @@ return [
     ],
     'table' => [
         'headers' => [
-            'name' => '{{ model }} Name',
+            'name' => '{{ modelName }} Name',
             'reference_number' => 'Reference Number',
-            'image' => '{{ model }} Image',
+            'image' => '{{ modelName }} Image',
             'actions' => 'Actions',
         ],
         'buttons' => [
