@@ -17,21 +17,21 @@ return [
     ],
     'form' => [
         'labels' => [
-            'name' => '{{ model }} Name',
+            'name' => '{{ modelName }} Name',
             'reference_number' => 'Reference Number',
-            'image' => '{{ model }} Image',
+            'image' => '{{ modelName }} Image',
             'description' => 'Description',
             'confirm_password' => 'Confirm Password',
         ],
         'tooltips' => [
-            'name' => '{{ model }} Name',
+            'name' => '{{ modelName }} Name',
             'reference_number' => 'Reference Number',
-            'image' => '{{ model }} Image',
+            'image' => '{{ modelName }} Image',
             'description' => 'Description',
             'confirm_password' => 'Confirm Password',
         ],
         'placeholders' => [
-            'name' => 'Enter {{ model }} Name',
+            'name' => 'Enter {{ modelName }} Name',
             'reference_number' => 'Enter last name',
             'image' => 'Enter image address',
             'description' => 'Enter password',
@@ -42,7 +42,7 @@ return [
             'description' => 'Password must be at least 8 characters long.',
         ],
         'validation_text' => [
-            'name_required' => '{{ model }} Name is required.',
+            'name_required' => '{{ modelName }} Name is required.',
             'reference_number_required' => 'Last name is required.',
             'image_required' => 'Email is required.',
             'image_valid' => 'Please enter a valid image address.',
@@ -50,14 +50,14 @@ return [
             'password_confirmation' => 'Passwords do not match.',
         ],
         'validation_error_text' => [
-            'create_failed' => 'Unable to create the {{ model }}. Please check your input and try again.',
-            'update_failed' => 'Could not update the {{ model }}. Please check your form and try again..',
-            'delete_failed' => 'Failed to delete the {{ model }}. It may be in use or linked to other data.',
+            'create_failed' => 'Unable to create the {{ modelName }}. Please check your input and try again.',
+            'update_failed' => 'Could not update the {{ modelName }}. Please check your form and try again..',
+            'delete_failed' => 'Failed to delete the {{ modelName }}. It may be in use or linked to other data.',
         ],
         'error_text' => [
-            'create_failed' => 'Failed to create {{ model }}.',
-            'update_failed' => 'Failed to update {{ model }}.',
-            'delete_failed' => 'Failed to delete {{ model }}.',
+            'create_failed' => 'Failed to create {{ modelName }}.',
+            'update_failed' => 'Failed to update {{ modelName }}.',
+            'delete_failed' => 'Failed to delete {{ modelName }}.',
         ],
         'create' => [
             'button_label_default' => 'Create',
