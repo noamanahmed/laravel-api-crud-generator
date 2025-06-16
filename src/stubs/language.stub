@@ -33,7 +33,7 @@ return [
         'placeholders' => [
             'name' => 'Enter {{ modelName }} Name',
             'reference_number' => 'Enter last name',
-            'image' => 'Enter image address',
+            'image' => 'Upload an image',
             'description' => 'Enter description',
             'active' => 'Active',
         ],
@@ -43,11 +43,10 @@ return [
         ],
         'validation_text' => [
             'name_required' => '{{ modelName }} Name is required.',
-            'reference_number_required' => 'Last name is required.',
-            'image_required' => 'Email is required.',
-            'image_valid' => 'Please enter a valid image address.',
-            'password_required' => 'Password is required.',
-            'password_confirmation' => 'Passwords do not match.',
+            'reference_number_required' => 'Reference Number is required.',
+            'image_required' => 'Image is required.',
+            'image_valid' => 'Upload a valid image.',
+            'active_required' => 'Active is required.',
         ],
         'validation_error_text' => [
             'create_failed' => 'Unable to create the {{ modelName }}. Please check your input and try again.',
