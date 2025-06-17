@@ -4,6 +4,7 @@ namespace NoamanAhmed\ApiCrudGenerator;
 
 use NoamanAhmed\ApiCrudGenerator\Commands\CreateCrud;
 use NoamanAhmed\ApiCrudGenerator\Commands\CreateCrudComponent;
+use NoamanAhmed\ApiCrudGenerator\Commands\CrudStatus;
 use NoamanAhmed\ApiCrudGenerator\Commands\DeleteCrud;
 use NoamanAhmed\ApiCrudGenerator\Commands\Init;
 use NoamanAhmed\ApiCrudGenerator\Providers\CrudServiceProvider;
@@ -23,10 +24,12 @@ class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
             ->name('laravel-api-crud-generator')
             ->hasConfigFile()
 
+            
             // ->hasViews()
             ->hasCommand(Init::class)
             ->hasCommand(CreateCrud::class)
             ->hasCommand(CreateCrudComponent::class)
+            ->hasCommand(CrudStatus::class)
             ->hasCommand(DeleteCrud::class);
 
         $this->app->register(CrudServiceProvider::class);
