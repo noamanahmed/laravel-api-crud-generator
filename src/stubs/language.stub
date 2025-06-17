@@ -78,17 +78,17 @@ return [
             'delete_failed' => 'Failed to delete {{ modelName }}.',
         ],
         'create' => [
-            'button_label_default' => 'Create',
-            'button_label_loading' => 'Creating...'
+            'button_label_default' => 'Create {{ modelName }}',
+            'button_label_loading' => 'Creating {{ modelName }} ...'
         ],
         'update' => [
-            'button_label_default' => 'Update',
-            'button_label_loading' => 'Updating...'
+            'button_label_default' => 'Update {{ modelName }}',
+            'button_label_loading' => 'Updating {{ modelName }} ...'
         ],
         'delete' => [
             'confirmation_message' => 'Are you sure you want to delete this {{ model }}?',
-            'button_label_default' => 'Delete',
-            'button_label_loading' => 'Deleting...'
+            'button_label_default' => 'Delete {{ modelName }}',
+            'button_label_loading' => 'Deleting {{ modelName }}...'
         ],
         'reset' => [
             'button_label_default' => 'Reset {{ modelName }}',
@@ -190,9 +190,9 @@ return [
         ],
         'search' => [
             'label' => 'Search {{ modelName }}s',
-            'placeholder' => 'Search by name',
-            'button_label_default' => 'Search',
-            'button_label_loading' => 'Searching ...',
+            'placeholder' => 'Search {{ model }} by name',
+            'button_label_default' => 'Search {{ modelName }}',
+            'button_label_loading' => 'Searching {{ modelName }}...',
         ]
     ],
     'enums' => [
