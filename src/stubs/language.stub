@@ -22,6 +22,7 @@ return [
             'image' => '{{ modelName }} Image',
             'description' => 'Description',
             'active' => 'Active',
+            'select' => 'Select {{ modelName }}',
         ],
         'tooltips' => [
             'name' => '{{ modelName }} Name',
@@ -29,6 +30,7 @@ return [
             'image' => '{{ modelName }} Image',
             'description' => 'Description',
             'active' => 'Active',
+            'select' => 'Select {{ modelName }}',
         ],
         'placeholders' => [
             'name' => 'Enter {{ modelName }} Name',
@@ -36,10 +38,12 @@ return [
             'image' => 'Upload an image',
             'description' => 'Enter description',
             'active' => 'Active',
+            'select' => 'Select {{ modelName }}',
         ],
         'help_text' => [
             'image' => 'Please provide a valid image address.',
             'description' => 'Password must be at least 8 characters long.',
+            'select' => 'Please select a {{ modelName }}',
         ],
         'validation_text' => [
             'name_required' => '{{ modelName }} Name is required.',
@@ -47,6 +51,7 @@ return [
             'image_required' => 'Image is required.',
             'image_valid' => 'Upload a valid image.',
             'active_required' => 'Active is required.',
+            'select_required' => '{{ modelName }} is required.',
         ],
         'validation_error_text' => [
             'create_failed' => 'Unable to create the {{ modelName }}. Please check your input and try again.',
