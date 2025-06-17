@@ -19,12 +19,14 @@ return [
         'print' => 'Print {{ modelName }}',
         'edit' => 'Edit {{ modelName }}',
         'update' => 'Update {{ modelName }}',
+        'delete' => 'Delete {{ modelName }}',
         'back' => 'Back to {{ modelName }}s',
     ],
     'tooltips' => [
         'print' => 'Print {{ modelName }}',
         'edit' => 'Edit {{ modelName }}',
         'update' => 'Update {{ modelName }}',
+        'delete' => 'Delete {{ modelName }}',
         'back' => 'Back to {{ modelName }}s',
     ],
     'form' => [
