@@ -15,6 +15,11 @@ return [
         'show' => 'Show {{ modelName }}',
         'update' => 'Update {{ modelName }}',
     ],
+    'buttons' => [
+        'print' => 'Print {{ modelName }}',
+        'edit' => 'Edit {{ modelName }}',
+        'back' => 'Back to {{ modelName }}s',
+    ],
     'form' => [
         'labels' => [
             'name' => '{{ modelName }} Name',
