@@ -18,6 +18,7 @@ return [
     'buttons' => [
         'print' => 'Print {{ modelName }}',
         'edit' => 'Edit {{ modelName }}',
+        'update' => 'Update {{ modelName }}',
         'back' => 'Back to {{ modelName }}s',
     ],
     'form' => [
