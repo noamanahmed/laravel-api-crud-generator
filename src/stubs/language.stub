@@ -21,6 +21,12 @@ return [
         'update' => 'Update {{ modelName }}',
         'back' => 'Back to {{ modelName }}s',
     ],
+    'tooltips' => [
+        'print' => 'Print {{ modelName }}',
+        'edit' => 'Edit {{ modelName }}',
+        'update' => 'Update {{ modelName }}',
+        'back' => 'Back to {{ modelName }}s',
+    ],
     'form' => [
         'labels' => [
             'name' => '{{ modelName }} Name',
