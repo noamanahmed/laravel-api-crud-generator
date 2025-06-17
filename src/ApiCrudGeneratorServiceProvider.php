@@ -7,6 +7,7 @@ use NoamanAhmed\ApiCrudGenerator\Commands\CreateCrudComponent;
 use NoamanAhmed\ApiCrudGenerator\Commands\CrudStatus;
 use NoamanAhmed\ApiCrudGenerator\Commands\DeleteCrud;
 use NoamanAhmed\ApiCrudGenerator\Commands\Init;
+use NoamanAhmed\ApiCrudGenerator\Commands\RefreshCrudComponent;
 use NoamanAhmed\ApiCrudGenerator\Providers\CrudServiceProvider;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -29,6 +30,7 @@ class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
             ->hasCommand(CreateCrud::class)
             ->hasCommand(CreateCrudComponent::class)
             ->hasCommand(CrudStatus::class)
+            ->hasCommand(RefreshCrudComponent::class)            
             ->hasCommand(DeleteCrud::class);
 
         $this->app->register(CrudServiceProvider::class);
