@@ -109,7 +109,6 @@ class {{ modelName }}Controller extends BaseController
     public function analytics(AnalyticsRequest $request)
     {
         return $this->{{ model }}Service->analytics($request->validated());
-
     }
 
 }

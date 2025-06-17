@@ -31,6 +31,7 @@ class Init extends Command
             'app/Enums',
             'app/Exporters',
             'app/Importers',
+            'app/Filters',
             'resources/lang/en',
         ];
 
