@@ -170,6 +170,8 @@ return [
         ],
         'empty_table_text' => 'No {{ model }}s found.',
         'actions' => [
+            'show' => 'Show',
+            'show_tooltip' => 'Show {{ model }} details',
             'edit' => 'Edit',
             'edit_tooltip' => 'Edit {{ model }} details',
             'delete' => 'Delete',
