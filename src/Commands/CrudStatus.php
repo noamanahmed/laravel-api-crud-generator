@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class CrudStatus extends Command
 {
     protected $signature = 'api-crud-generator:crud-status';
+
     protected $description = 'List installed CRUDs where model, controller, repository, and service exist';
 
     public function handle()
@@ -34,9 +35,9 @@ class CrudStatus extends Command
         }
 
         if (empty($installedCruds)) {
-            $this->info("No complete CRUDs found.");
+            $this->info('No complete CRUDs found.');
         } else {
-            $this->info("Installed CRUDs:");
+            $this->info('Installed CRUDs:');
             foreach ($installedCruds as $crud) {
                 $this->line("- {$crud}");
             }
@@ -47,7 +48,7 @@ class CrudStatus extends Command
 
     protected function getCrudNames($modelsPath): array
     {
-        if (!File::exists($modelsPath)) {
+        if (! File::exists($modelsPath)) {
             return [];
         }
 
