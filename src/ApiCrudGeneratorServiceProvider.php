@@ -30,7 +30,7 @@ class ApiCrudGeneratorServiceProvider extends PackageServiceProvider
             ->hasCommand(CreateCrud::class)
             ->hasCommand(CreateCrudComponent::class)
             ->hasCommand(CrudStatus::class)
-            ->hasCommand(RefreshCrudComponent::class)            
+            ->hasCommand(RefreshCrudComponent::class)
             ->hasCommand(DeleteCrud::class);
 
         $this->app->register(CrudServiceProvider::class);

@@ -28,8 +28,8 @@ class CreateCrudComponent extends Command
 
         $config = $componentsMap[$component];
 
-        $fileName = $config['name'] . ($config['extension'] ?? '.php');
-        $filePath = rtrim($config['path'], '/') . '/' . $fileName;
+        $fileName = $config['name'].($config['extension'] ?? '.php');
+        $filePath = rtrim($config['path'], '/').'/'.$fileName;
 
         $this->makeDirectory($config['path']);
 
@@ -44,7 +44,7 @@ class CreateCrudComponent extends Command
     protected function copyStub($stubName, $stubCrudName, $destinationFolder)
     {
         $publishedStub = resource_path("stubs/vendor/api-crud-generator/{$stubName}.stub");
-        $vendorStub = __DIR__ . "/../stubs/{$stubName}.stub";
+        $vendorStub = __DIR__."/../stubs/{$stubName}.stub";
 
         $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendorStub;
         $destinationFilePath = "{$destinationFolder}/{$stubCrudName}";
@@ -66,7 +66,7 @@ class CreateCrudComponent extends Command
         ];
 
         foreach ($replaceVariablesArray as $key => $value) {
-            $fileContent = str_replace('{{ ' . $key . ' }}', $value, $fileContent);
+            $fileContent = str_replace('{{ '.$key.' }}', $value, $fileContent);
         }
 
         File::put($filePath, $fileContent);
@@ -78,6 +78,7 @@ class CreateCrudComponent extends Command
             mkdir($path, 0755, true);
         }
     }
+
     public function getComponentMap(string $crudName): array
     {
         $snakedCrudName = Str::snake($crudName);

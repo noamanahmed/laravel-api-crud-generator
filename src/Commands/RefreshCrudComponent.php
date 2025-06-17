@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class RefreshCrudComponent extends Command
 {
     protected $signature = 'api-crud-generator:refresh-component {component}';
+
     protected $description = 'Refresh a specific component (controller, repository, etc.) for all detected CRUDs';
 
     public function handle()
@@ -16,10 +17,11 @@ class RefreshCrudComponent extends Command
         $component = strtolower($this->argument('component'));
 
         // Reuse the component config from the original command
-        $componentMap = (new \NoamanAhmed\ApiCrudGenerator\Commands\CreateCrudComponent())->getComponentMap('Placeholder');
+        $componentMap = (new \NoamanAhmed\ApiCrudGenerator\Commands\CreateCrudComponent)->getComponentMap('Placeholder');
 
-        if (!isset($componentMap[$component])) {
+        if (! isset($componentMap[$component])) {
             $this->error("Unsupported component: '{$component}'");
+
             return 1;
         }
 
@@ -29,12 +31,12 @@ class RefreshCrudComponent extends Command
         foreach ($crudNames as $crudName) {
             $componentName = str_replace('Placeholder', $crudName, $configTemplate['name']);
             $componentPath = rtrim(str_replace('Placeholder', $crudName, $configTemplate['path']), '/');
-            $fileName = $componentName . ($configTemplate['extension'] ?? '.php');
+            $fileName = $componentName.($configTemplate['extension'] ?? '.php');
             $filePath = "{$componentPath}/{$fileName}";
 
             // Confirm before overwrite
             if (File::exists($filePath)) {
-                if (!$this->confirm("Overwrite {$filePath}?", false)) {
+                if (! $this->confirm("Overwrite {$filePath}?", false)) {
                     continue;
                 }
             }
@@ -52,7 +54,9 @@ class RefreshCrudComponent extends Command
     protected function getCrudNames(): array
     {
         $modelsPath = app_path('Models');
-        if (!File::exists($modelsPath)) return [];
+        if (! File::exists($modelsPath)) {
+            return [];
+        }
 
         return collect(File::files($modelsPath))
             ->filter(fn ($file) => Str::endsWith($file->getFilename(), '.php'))
@@ -62,7 +66,7 @@ class RefreshCrudComponent extends Command
 
     protected function makeDirectory($path)
     {
-        if (!is_dir($path)) {
+        if (! is_dir($path)) {
             mkdir($path, 0755, true);
         }
     }
@@ -70,7 +74,7 @@ class RefreshCrudComponent extends Command
     protected function copyStub($stubName, $fileName, $destinationFolder)
     {
         $publishedStub = resource_path("stubs/vendor/api-crud-generator/{$stubName}.stub");
-        $vendorStub = __DIR__ . "/../stubs/{$stubName}.stub";
+        $vendorStub = __DIR__."/../stubs/{$stubName}.stub";
         $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendorStub;
         $destinationFilePath = "{$destinationFolder}/{$fileName}";
 
@@ -86,7 +90,7 @@ class RefreshCrudComponent extends Command
         ];
 
         foreach ($replacements as $key => $value) {
-            $fileContent = str_replace('{{ ' . $key . ' }}', $value, $fileContent);
+            $fileContent = str_replace('{{ '.$key.' }}', $value, $fileContent);
         }
 
         File::put($filePath, $fileContent);
