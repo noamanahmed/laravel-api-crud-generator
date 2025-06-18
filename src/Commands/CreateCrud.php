@@ -122,8 +122,8 @@ class CreateCrud extends Command
         $fileContent = File::get($filePath);
         $replaceVariablesArray = [
             'modelName' => $this->argument('name'),
-            'modelNameTitle' => str($this->argument('name'))->snake()->title(),
-            'model' => str($this->argument('name'))->snake(),
+            'modelNameTitle' => str($this->argument('name'))->snake()->headline()->toString(),
+            'model' => str($this->argument('name'))->snake()->toString(),
         ];
         foreach ($replaceVariablesArray as $key => $value) {
             $fileContent = str_replace('{{ '.$key.' }}', $value, $fileContent);
