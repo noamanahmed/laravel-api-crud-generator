@@ -62,7 +62,7 @@ class CreateCrudComponent extends Command
         $fileContent = File::get($filePath);
         $replaceVariablesArray = [
             'modelName' => $this->argument('name'),
-            'model' => strtolower($this->argument('name')),
+            'model' => str($this->argument('name'))->snake(),
         ];
 
         foreach ($replaceVariablesArray as $key => $value) {
