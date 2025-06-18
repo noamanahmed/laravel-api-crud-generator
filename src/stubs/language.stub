@@ -114,7 +114,7 @@ return [
         ],
         'placeholders' => [
             'name' => 'Enter {{ modelNameTitle }} Name',
-            'reference_number' => 'Enter last name',
+            'reference_number' => 'Reference Number',
             'image' => 'Enter image address',
             'description' => 'Description',
             'active' => 'Active',
