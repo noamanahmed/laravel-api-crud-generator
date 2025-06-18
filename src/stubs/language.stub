@@ -164,6 +164,7 @@ return [
             'csv' => 'CSV',
             'print' => 'Print',
             'delete' => 'Delete',
+            'bulk-delete' => 'Bulk Delete',
             'import' => 'Import',
             'export' => 'Export',
             'visibility' => 'Column Visibility',
