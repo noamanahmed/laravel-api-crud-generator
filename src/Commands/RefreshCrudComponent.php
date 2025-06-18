@@ -27,8 +27,9 @@ class RefreshCrudComponent extends Command
         $crudNames = $this->getCrudNames(); // e.g. from Models or Controllers
 
         foreach ($crudNames as $crudName) {
-            $componentName = str_replace(['Placeholder','placeholder'], $crudName, $configTemplate['name']);
-            $componentPath = rtrim(str_replace(['Placeholder','placeholder'], $crudName, $configTemplate['path']), '/');
+            $crudNameLowerCase = strtolower($crudName);
+            $componentName = str_replace(['Placeholder', 'placeholder'], [$crudName,$crudNameLowerCase], $configTemplate['name']);
+            $componentPath = rtrim(str_replace(['Placeholder', 'placeholder'], [$crudName,$crudNameLowerCase], $configTemplate['path']), '/');
             $fileName = $componentName . ($configTemplate['extension'] ?? '.php');
             $filePath = "{$componentPath}/{$fileName}";
             // Confirm before overwrite
@@ -75,7 +76,7 @@ class RefreshCrudComponent extends Command
         $vendorStub = __DIR__ . "/../stubs/{$stubName}.stub";
         $sourceFilePath = file_exists($publishedStub) ? $publishedStub : $vendorStub;
         $destinationFilePath = "{$destinationFolder}/{$fileName}";
-
+        
         File::copy($sourceFilePath, $destinationFilePath);
     }
 
