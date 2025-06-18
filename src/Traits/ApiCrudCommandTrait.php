@@ -2,11 +2,11 @@
 
 namespace NoamanAhmed\ApiCrudGenerator\Traits;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-trait ApiCrudCommandTrait{
+trait ApiCrudCommandTrait
+{
     protected function copyStub($stubName, $stubCrudName, $destinationFolder)
     {
         $publishedStub = resource_path("stubs/vendor/api-crud-generator/{$stubName}.stub");
@@ -23,7 +23,7 @@ trait ApiCrudCommandTrait{
         }
     }
 
-    protected function replaceStubVariables($filePath,$crudName)
+    protected function replaceStubVariables($filePath, $crudName)
     {
         $fileContent = File::get($filePath);
         $replaceVariablesArray = [

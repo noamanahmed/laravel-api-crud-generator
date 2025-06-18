@@ -3,7 +3,6 @@
 namespace NoamanAhmed\ApiCrudGenerator\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use NoamanAhmed\ApiCrudGenerator\Traits\ApiCrudCommandTrait;
 
@@ -37,12 +36,10 @@ class CreateCrudComponent extends Command
         $this->makeDirectory($config['path']);
 
         $this->copyStub($config['stub'], $fileName, $config['path']);
-        $this->replaceStubVariables($filePath,$crudName);
+        $this->replaceStubVariables($filePath, $crudName);
 
         $this->info("Component '{$component}' generated successfully for {$crudName}.");
 
         return 0;
     }
-
-    
 }

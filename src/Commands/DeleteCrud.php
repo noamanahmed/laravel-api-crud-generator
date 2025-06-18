@@ -33,7 +33,7 @@ class DeleteCrud extends Command
 
         foreach ($componentMap as $component => $config) {
             $path = rtrim($config['path'], '/');
-            $fileName = $config['name'] . ($config['extension'] ?? '.php');
+            $fileName = $config['name'].($config['extension'] ?? '.php');
             $fullPath = "{$path}/{$fileName}";
 
             if (File::exists($fullPath)) {

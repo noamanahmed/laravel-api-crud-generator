@@ -71,25 +71,25 @@ class CreateCrud extends Command
             $this->copyStub('language', $snakedCrudName, base_path('resources/lang/en'));
             $this->copyStub('filter', $crudName.'Filter', base_path('app/Filters'));
 
-            $this->replaceStubVariables(app_path("Http/Controllers/{$crudName}Controller.php"),$crudName);
-            $this->replaceStubVariables(app_path("Services/{$crudName}Service.php"),$crudName);
-            $this->replaceStubVariables(app_path("Repositories/{$crudName}Repository.php"),$crudName);
-            $this->replaceStubVariables(app_path("Transformers/{$crudName}Transformer.php"),$crudName);
-            $this->replaceStubVariables(app_path("Transformers/{$crudName}CollectionTransformer.php"),$crudName);
-            $this->replaceStubVariables(app_path("Importers/{$crudName}Importer.php"),$crudName);
-            $this->replaceStubVariables(app_path("Exporters/{$crudName}Exporter.php"),$crudName);
-            $this->replaceStubVariables(app_path("Enums/{$crudName}StatusEnum.php"),$crudName);
-            $this->replaceStubVariables(base_path("tests/Feature/Modules/{$crudName}/{$crudName}CrudTest.php"),$crudName);
-            $this->replaceStubVariables(base_path("tests/Factories/{$crudName}Factory.php"),$crudName);
-            $this->replaceStubVariables(base_path("database/seeders/{$crudName}Seeder.php"),$crudName);
-            $this->replaceStubVariables(base_path("resources/lang/en/{$snakedCrudName}.php"),$crudName);
-            $this->replaceStubVariables(base_path('app/Http/Controllers/'.$crudName.'Controller.php'),$crudName);
-            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/StoreRequest.php'),$crudName);
-            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/UpdateRequest.php'),$crudName);
-            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ImportRequest.php'),$crudName);
-            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ExportRequest.php'),$crudName);
-            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/AnalyticsRequest.php'),$crudName);
-            $this->replaceStubVariables(app_path("Filters/{$crudName}Filter.php"),$crudName);
+            $this->replaceStubVariables(app_path("Http/Controllers/{$crudName}Controller.php"), $crudName);
+            $this->replaceStubVariables(app_path("Services/{$crudName}Service.php"), $crudName);
+            $this->replaceStubVariables(app_path("Repositories/{$crudName}Repository.php"), $crudName);
+            $this->replaceStubVariables(app_path("Transformers/{$crudName}Transformer.php"), $crudName);
+            $this->replaceStubVariables(app_path("Transformers/{$crudName}CollectionTransformer.php"), $crudName);
+            $this->replaceStubVariables(app_path("Importers/{$crudName}Importer.php"), $crudName);
+            $this->replaceStubVariables(app_path("Exporters/{$crudName}Exporter.php"), $crudName);
+            $this->replaceStubVariables(app_path("Enums/{$crudName}StatusEnum.php"), $crudName);
+            $this->replaceStubVariables(base_path("tests/Feature/Modules/{$crudName}/{$crudName}CrudTest.php"), $crudName);
+            $this->replaceStubVariables(base_path("tests/Factories/{$crudName}Factory.php"), $crudName);
+            $this->replaceStubVariables(base_path("database/seeders/{$crudName}Seeder.php"), $crudName);
+            $this->replaceStubVariables(base_path("resources/lang/en/{$snakedCrudName}.php"), $crudName);
+            $this->replaceStubVariables(base_path('app/Http/Controllers/'.$crudName.'Controller.php'), $crudName);
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/StoreRequest.php'), $crudName);
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/UpdateRequest.php'), $crudName);
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ImportRequest.php'), $crudName);
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/ExportRequest.php'), $crudName);
+            $this->replaceStubVariables(base_path('app/Http/Requests/'.$crudName.'/AnalyticsRequest.php'), $crudName);
+            $this->replaceStubVariables(app_path("Filters/{$crudName}Filter.php"), $crudName);
 
             $this->info('CRUD files generated successfully.');
 
@@ -119,5 +119,4 @@ class CreateCrud extends Command
             $this->info("The file '{$sourceFilePath}' already exists in '{$destinationFilePath}'.");
         }
     }
-
 }
