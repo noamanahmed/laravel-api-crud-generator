@@ -89,8 +89,8 @@ class RefreshCrudComponent extends Command
     {
         $fileContent = File::get($filePath);
         $replacements = [
-            'modelName' => $crudName,
             'modelNameTitle' => str($crudName)->snake()->headline()->toString(),
+            'modelName' => $crudName,
             'model' => str($crudName)->snake()->toString(),
         ];
 
