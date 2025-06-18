@@ -88,7 +88,9 @@ return [
         'delete' => [
             'confirmation_message' => 'Are you sure you want to delete this {{ modelName }}?',
             'button_label_default' => 'Delete {{ modelNameTitle }}',
-            'button_label_loading' => 'Deleting {{ modelNameTitle }}...'
+            'button_label_loading' => 'Deleting {{ modelNameTitle }}...',
+            'cancel_label_default' => 'Cancel',
+            'cancel_label_loading' => 'Cancelling...'
         ],
         'reset' => [
             'button_label_default' => 'Reset {{ modelNameTitle }}',
