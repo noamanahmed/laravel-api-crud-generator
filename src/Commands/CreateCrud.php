@@ -122,7 +122,7 @@ class CreateCrud extends Command
         $fileContent = File::get($filePath);
         $replaceVariablesArray = [
             'modelName' => $this->argument('name'),
-            'modelNameTitle' => str($this->argument('name'))->title(),
+            'modelNameTitle' => str($this->argument('name'))->snake()->title(),
             'model' => str($this->argument('name'))->snake(),
         ];
         foreach ($replaceVariablesArray as $key => $value) {

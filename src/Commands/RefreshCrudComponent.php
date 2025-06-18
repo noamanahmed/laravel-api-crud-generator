@@ -90,7 +90,7 @@ class RefreshCrudComponent extends Command
         $fileContent = File::get($filePath);
         $replacements = [
             'modelName' => $crudName,
-            'modelNameTitle' => str($crudName)->title(),
+            'modelNameTitle' => str($crudName)->snake()->title(),
             'model' => str($crudName)->snake(),
         ];
 
