@@ -20,14 +20,14 @@ return [
         'edit' => 'Edit {{ modelNameTitle }}',
         'update' => 'Update {{ modelNameTitle }}',
         'delete' => 'Delete {{ modelNameTitle }}',
-        'back' => 'Back to {{ modelNameTitle }}s',
+        'back' => 'Back to {{ modelNameTitlePlural }}',
     ],
     'tooltips' => [
         'print' => 'Print {{ modelNameTitle }}',
         'edit' => 'Edit {{ modelNameTitle }}',
         'update' => 'Update {{ modelNameTitle }}',
         'delete' => 'Delete {{ modelNameTitle }}',
-        'back' => 'Back to {{ modelNameTitle }}s',
+        'back' => 'Back to {{ modelNameTitlePlural }}',
     ],
     'form' => [
         'labels' => [
@@ -86,7 +86,7 @@ return [
             'button_label_loading' => 'Updating {{ modelNameTitle }} ...'
         ],
         'delete' => [
-            'confirmation_message' => 'Are you sure you want to delete this {{ model }}?',
+            'confirmation_message' => 'Are you sure you want to delete this {{ modelName }}?',
             'button_label_default' => 'Delete {{ modelNameTitle }}',
             'button_label_loading' => 'Deleting {{ modelNameTitle }}...'
         ],
@@ -141,11 +141,11 @@ return [
             'delete' => '{{ modelNameTitle }} deleted successfully.',
         ],
         'error' => [
-            'create' => 'There was an error creating the {{ model }}.',
-            'update' => 'There was an error updating the {{ model }}.',
-            'delete' => 'There was an error deleting the {{ model }}.',
-            'not_found' => 'Unable to find the {{ model }}',
-            'not_authorized' => 'You are not authorized to perform this action on this {{ model }}',
+            'create' => 'There was an error creating the {{ modelName }}.',
+            'update' => 'There was an error updating the {{ modelName }}.',
+            'delete' => 'There was an error deleting the {{ modelName }}.',
+            'not_found' => 'Unable to find the {{ modelName }}',
+            'not_authorized' => 'You are not authorized to perform this action on this {{ modelName }}',
         ],
         'warning' => [
             'unsaved_changes' => 'You have unsaved changes. Do you want to leave without saving?'
@@ -168,14 +168,14 @@ return [
             'export' => 'Export',
             'visibility' => 'Column Visibility',
         ],
-        'empty_table_text' => 'No {{ model }}s found.',
+        'empty_table_text' => 'No {{ modelName }}s found.',
         'actions' => [
             'show' => 'Show',
-            'show_tooltip' => 'Show {{ model }} details',
+            'show_tooltip' => 'Show {{ modelName }} details',
             'edit' => 'Edit',
-            'edit_tooltip' => 'Edit {{ model }} details',
+            'edit_tooltip' => 'Edit {{ modelName }} details',
             'delete' => 'Delete',
-            'delete_tooltip' => 'Delete {{ model }}',
+            'delete_tooltip' => 'Delete {{ modelName }}',
         ],
         'pagination' => [
             'drop_down' => [
@@ -189,8 +189,8 @@ return [
             'paginator_text' => 'Showing :first_item to :last_item of :total_items entries'
         ],
         'search' => [
-            'label' => 'Search {{ modelNameTitle }}s',
-            'placeholder' => 'Search {{ model }} by name',
+            'label' => 'Search {{ modelNameTitlePlural }}',
+            'placeholder' => 'Search {{ modelName }} by name',
             'button_label_default' => 'Search {{ modelNameTitle }}',
             'button_label_loading' => 'Searching {{ modelNameTitle }}...',
         ]

@@ -28,7 +28,9 @@ trait ApiCrudCommandTrait
         $fileContent = File::get($filePath);
         $replaceVariablesArray = [
             'modelNameTitle' => str($crudName)->snake()->headline()->toString(),
-            'modelName' => $crudName,
+            'modelNameTitlePlural' => str($crudName)->plural()->snake()->headline()->toString(),
+            'modelNamePlural' => str($crudName)->plural()->toString(),
+            'modelName' => str($crudName)->toString(),
             'model' => str($crudName)->snake()->toString(),
         ];
 
