@@ -27,7 +27,7 @@ class RefreshCrudComponent extends Command
         $crudNames = $this->getCrudNames(); // e.g. from Models or Controllers
 
         foreach ($crudNames as $crudName) {
-            $crudNameLowerCase = strtolower($crudName);
+            $crudNameLowerCase = str($crudName)->snake();
             $componentName = str_replace(['Placeholder', 'placeholder'], [$crudName,$crudNameLowerCase], $configTemplate['name']);
             $componentPath = rtrim(str_replace(['Placeholder', 'placeholder'], [$crudName,$crudNameLowerCase], $configTemplate['path']), '/');
             $fileName = $componentName . ($configTemplate['extension'] ?? '.php');
