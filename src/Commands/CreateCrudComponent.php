@@ -160,6 +160,12 @@ class CreateCrudComponent extends Command
                 'path' => base_path('resources/lang/en'),
                 'extension' => '.php',
             ],
+            'module_lang' => [
+                'stub' => 'language',
+                'name' => $snakedCrudName,
+                'path' => base_path('resources/lang/en/modules'),
+                'extension' => '.php',
+            ],
         ];
     }
 }
