@@ -22,7 +22,8 @@ class DeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'ids' => ['required', 'array'],
+            'ids.*' => ['integer', 'exists:{{ modelNamePlural }},id'],
         ];
     }
 }
