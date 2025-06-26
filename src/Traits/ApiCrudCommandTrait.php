@@ -68,6 +68,11 @@ trait ApiCrudCommandTrait
                 'name' => 'UpdateRequest',
                 'path' => app_path("Http/Requests/{$crudName}"),
             ],
+            'delete-request' => [
+                'stub' => 'delete.request',
+                'name' => 'DeleteRequest',
+                'path' => app_path("Http/Requests/{$crudName}"),
+            ],
             'import-request' => [
                 'stub' => 'import.request',
                 'name' => 'ImportRequest',

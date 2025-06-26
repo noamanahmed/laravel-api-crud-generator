@@ -114,7 +114,7 @@ return [
         ],
         'placeholders' => [
             'name' => 'Enter {{ modelNameTitle }} Name',
-            'reference_number' => 'Reference Number',
+            'reference_number' => 'Reference Number ',
             'image' => 'Enter image address',
             'description' => 'Description',
             'active' => 'Active',
@@ -148,6 +148,7 @@ return [
             'delete' => 'There was an error deleting the {{ modelNameTitle }}.',
             'not_found' => 'Unable to find the {{ modelNameTitle }}',
             'not_authorized' => 'You are not authorized to perform this action on this {{ modelNameTitle }}',
+            'no_item_selected' => 'You need to select some {{ modelNameTitle }} first',
         ],
         'warning' => [
             'unsaved_changes' => 'You have unsaved changes. Do you want to leave without saving?'
