@@ -46,7 +46,7 @@ class RefreshCrudComponent extends Command
             }
 
             $this->makeDirectory($componentPath);
-            $this->copyStub($component, $fileName, $componentPath);
+            $this->copyStub($configTemplate['stub'], $fileName, $componentPath);
             $this->replaceStubVariables($filePath, $crudName);
 
             $this->info("Updated {$component} for {$crudName}.");
