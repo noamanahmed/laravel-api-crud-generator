@@ -92,6 +92,27 @@ return [
             'cancel_label_default' => 'Cancel',
             'cancel_label_loading' => 'Cancelling...'
         ],
+        'multi_delete' => [
+            'confirmation_message' => 'Are you sure you want to delete these {{ modelNameTitlePlural }}?',
+            'button_label_default' => 'Delete {{ modelNameTitlePlural }}',
+            'button_label_loading' => 'Deleting {{ modelNameTitlePlural }}...',
+            'cancel_label_default' => 'Cancel',
+            'cancel_label_loading' => 'Cancelling...'
+        ],
+        'export' => [
+            'confirmation_message' => 'Are you sure you want to export this {{ modelNameTitle }}?',
+            'button_label_default' => 'Export {{ modelNameTitle }}',
+            'button_label_loading' => 'Exporting {{ modelNameTitle }}...',
+            'cancel_label_default' => 'Cancel',
+            'cancel_label_loading' => 'Cancelling...'
+        ],
+        'import' => [
+            'confirmation_message' => 'Are you sure you want to import this {{ modelNameTitle }}?',
+            'button_label_default' => 'Import {{ modelNameTitle }}',
+            'button_label_loading' => 'Importing {{ modelNameTitle }}...',
+            'cancel_label_default' => 'Cancel',
+            'cancel_label_loading' => 'Cancelling...'
+        ],
         'reset' => [
             'button_label_default' => 'Reset {{ modelNameTitle }}',
             'button_label_loading' => 'Resetting {{ modelNameTitle }}...',
